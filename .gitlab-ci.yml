@@ -6,7 +6,7 @@ stages:
 deploy:
   stage: update-production
   only:
-    - master
+    - main
   script:
     - npm i -g @liara/cli@3
     - liara deploy --app ticket-front --api-token $TOKEN --detach
