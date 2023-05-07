@@ -1,0 +1,12 @@
+image: node:16-alpine
+
+stages:
+  - update-production
+
+deploy:
+  stage: update-production
+  only:
+    - master
+  script:
+    - npm i -g @liara/cli@3
+    - liara deploy --app ticket-front --api-token $TOKEN --detach
