@@ -138,13 +138,13 @@ export default {
                 "name": "Guest",
                 "guest_identifier": gi
             }, {
-                headers: { 'Content-Type': 'multipart/form-data', },
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data', },
             }).then((response) => {
 
                 axios.post('https://ticket-backend.iran.liara.run/api/ata/guest/', {
                     guest_identifier: gi
                 }, {
-                    headers: {'Content-Type': 'application/json', },
+                    headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
                 }).then(async (response) => {
                     localStorage.setItem('token', response.data.token)
                     this.token = response.data.token

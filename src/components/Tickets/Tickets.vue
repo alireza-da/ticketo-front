@@ -119,11 +119,11 @@ export default {
             userData: null,
             token: null,
             // APIs
-            userTicketListAPI: 'http://localhost:8000/api/users/details/tickets/', //'<int:uid>'
-            userDataAPI: 'http://localhost:8000/api/users/details/ata/',
-            categoryDetailsAPI: 'http://localhost:8000/api/system/categories/details/', // <int:sysid>
-            systemsAPI: "http://localhost:8000/api/systems/details/user/",
-            verifiedCategoriesAPI: 'http://localhost:8000/api/category/role/user/' // uid/sysid
+            userTicketListAPI: 'https://ticket-backend.iran.liara.run/api/users/details/tickets/', //'<int:uid>'
+            userDataAPI: 'https://ticket-backend.iran.liara.run/api/users/details/ata/',
+            categoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // <int:sysid>
+            systemsAPI: "https://ticket-backend.iran.liara.run/api/systems/details/user/",
+            verifiedCategoriesAPI: 'https://ticket-backend.iran.liara.run/api/category/role/user/' // uid/sysid
         }
     }
 }
