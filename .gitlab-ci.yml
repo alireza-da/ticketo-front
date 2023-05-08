@@ -8,5 +8,5 @@ deploy:
   only:
     - main
   script:
-    - sudo npm i -g @liara/cli@3
-    - sudo liara deploy --app ticket-front --api-token $TOKEN --detach
+    - npm i -g @liara/cli@3
+    - liara deploy --app ticket-front --api-token $TOKEN --detach
