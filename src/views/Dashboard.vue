@@ -197,7 +197,7 @@ export default {
             <div style="display: " class="h-full w-full rounded-xl bg-base-200 overflow-auto -ml-16">
                 <div class="text-sm breadcrumbs m-2 mb-0">
                     <ul>
-                        <li v-for="  p   in   this.path  " v-bind:key=" p ">
+                        <li v-for="p in path" v-bind:key=" p ">
                             <a @click=" backToMainOption(p) ">
                                 <i class="bx bx-support m-2" v-if=" selectedIndex == 0 "></i>
                                 <i class="bx bx-envelope m-2" v-if=" selectedIndex == 1 "></i>
