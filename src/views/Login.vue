@@ -27,14 +27,14 @@ export default {
             systems: null,
             token: "",
             // APIs
-            googleAuthTokenAPI: 'https://62.3.14.249/api/ata/google/',
+            googleAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/google/',
             googleAccesTokenAPI: 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=',
-            discordAuthTokenAPI: 'https://62.3.14.249/api/ata/discord/',
-            steamAuthTokenAPI: 'https://62.3.14.249/api/ata/steam/',
+            discordAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/discord/',
+            steamAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/steam/',
             discordOauth2API: 'https://discord.com/api/oauth2/authorize?client_id=1100826836516229191&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fauth%2Fdiscord&response_type=code&scope=identify',
-            createUserAPI: 'https://62.3.14.249/api/users/create/',
-            roleListAPI: "https://62.3.14.249/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
-            sysListAPI: "https://62.3.14.249/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
+            createUserAPI: 'https://ticket-backend.iran.liara.run/api/users/create/',
+            roleListAPI: "https://ticket-backend.iran.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
+            sysListAPI: "https://ticket-backend.iran.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
         }
     },
     methods: {
@@ -81,7 +81,7 @@ export default {
         },
 
         login() {
-            axios.post('https://62.3.14.249/api/ata/', {
+            axios.post('https://ticket-backend.iran.liara.run/api/ata/', {
 
                 "username": this.email,
                 "password": this.password
@@ -141,7 +141,7 @@ export default {
                 headers: { 'Content-Type': 'multipart/form-data', },
             }).then((response) => {
 
-                axios.post('https://62.3.14.249/api/ata/guest/', {
+                axios.post('https://ticket-backend.iran.liara.run/api/ata/guest/', {
                     guest_identifier: gi
                 }, {
                     headers: {'Content-Type': 'application/json', },

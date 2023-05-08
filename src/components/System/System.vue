@@ -823,35 +823,35 @@ export default {
             // default message
             msgAttachment: null,
             // APIs //
-            createMessageAPI: 'https://62.3.14.249/api/tickets/messages/list/', // tid
-            messageDetailsAPI: 'https://62.3.14.249/api/messages/details/', // int pk
-            attachmentListAPI: 'https://62.3.14.249/api/tickets/messages/details/attachment/list/',
-            usersSystemAPI: 'https://62.3.14.249/api/systems/details/users/',
-            ticketsSystemAPI: 'https://62.3.14.249/api/systems/details/tickets/',
-            userRolesAPI: 'https://62.3.14.249/api/roles/details/', // <int:sysid>/<int:uid>,
-            userDetailsAPI: 'https://62.3.14.249/api/users/details/',// <int:pk>
-            removeUserFromSysAPI: 'https://62.3.14.249/api/roles/details/deleteallroles/', // <int:sys_id>/uid
-            sysRolesDetailsAPI: 'https://62.3.14.249/api/roles/details/system/', // <int:sys_id>
-            rolesDetailsAPI: 'https://62.3.14.249/api/roles/details/', // <int:pk>
-            rolesDetailsDeleteAPI: 'https://62.3.14.249/api/roles/details/delete/', // <int:sys_id>/uid/rid
-            createRoleAPI: 'https://62.3.14.249/api/roles/list/',
-            sysCategoryDetailsAPI: 'https://62.3.14.249/api/system/categories/details/', // sid
-            categoryDetailsAPI: 'https://62.3.14.249/api/categories/details/',  // cid
-            categryListAPI: 'https://62.3.14.249/api/system/categories/list/', // cid
-            findTicketOwnerAPI: 'https://62.3.14.249/api/tickets/roles/ticketowner/', // tid
-            ticketTicketRolesAPI: 'https://62.3.14.249/api/tickets/roles/details/', // tid
-            ticketDetailsAPI: 'https://62.3.14.249/api/tickets/details/', // tid
-            systemDetailsAPI: 'https://62.3.14.249/api/systems/details/', // pk
-            systemListAPI: 'https://62.3.14.249/api/systems/list/', // pk
-            userDataAPI: 'https://62.3.14.249/api/users/details/ata/',
-            serverMediaAPI: 'https://62.3.14.249', //path
-            categoryRoleListAPI: 'https://62.3.14.249/api/category/role/list/',
-            categoryRoleDetailsAPI: 'https://62.3.14.249/api/category/role/details/', // int pk
-            categoryRoleDeleteAPI: 'https://62.3.14.249/api/category/role/delete/', // int catid
-            predefinedMessageListAPI: 'https://62.3.14.249/api/predefinedmsg/list/',
-            predefinedMessageDetailsAPI: 'https://62.3.14.249/api/predefinedmsg/details/', // int pk
-            predefinedMessageSystemAPI: 'https://62.3.14.249/api/system/predefinedmsg/', // sysid
-            defaultMessageCategoryAPI: 'https://62.3.14.249/api/categories/defaultmessage/', //cid
+            createMessageAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/list/', // tid
+            messageDetailsAPI: 'https://ticket-backend.iran.liara.run/api/messages/details/', // int pk
+            attachmentListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/attachment/list/',
+            usersSystemAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/users/',
+            ticketsSystemAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/tickets/',
+            userRolesAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
+            userDetailsAPI: 'https://ticket-backend.iran.liara.run/api/users/details/',// <int:pk>
+            removeUserFromSysAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/deleteallroles/', // <int:sys_id>/uid
+            sysRolesDetailsAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/system/', // <int:sys_id>
+            rolesDetailsAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/', // <int:pk>
+            rolesDetailsDeleteAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/delete/', // <int:sys_id>/uid/rid
+            createRoleAPI: 'https://ticket-backend.iran.liara.run/api/roles/list/',
+            sysCategoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // sid
+            categoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/categories/details/',  // cid
+            categryListAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/list/', // cid
+            findTicketOwnerAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/ticketowner/', // tid
+            ticketTicketRolesAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/details/', // tid
+            ticketDetailsAPI: 'https://ticket-backend.iran.liara.run/api/tickets/details/', // tid
+            systemDetailsAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/', // pk
+            systemListAPI: 'https://ticket-backend.iran.liara.run/api/systems/list/', // pk
+            userDataAPI: 'https://ticket-backend.iran.liara.run/api/users/details/ata/',
+            serverMediaAPI: 'https://ticket-backend.iran.liara.run', //path
+            categoryRoleListAPI: 'https://ticket-backend.iran.liara.run/api/category/role/list/',
+            categoryRoleDetailsAPI: 'https://ticket-backend.iran.liara.run/api/category/role/details/', // int pk
+            categoryRoleDeleteAPI: 'https://ticket-backend.iran.liara.run/api/category/role/delete/', // int catid
+            predefinedMessageListAPI: 'https://ticket-backend.iran.liara.run/api/predefinedmsg/list/',
+            predefinedMessageDetailsAPI: 'https://ticket-backend.iran.liara.run/api/predefinedmsg/details/', // int pk
+            predefinedMessageSystemAPI: 'https://ticket-backend.iran.liara.run/api/system/predefinedmsg/', // sysid
+            defaultMessageCategoryAPI: 'https://ticket-backend.iran.liara.run/api/categories/defaultmessage/', //cid
             //////////
             userData: null,
             users: [],
@@ -1041,7 +1041,7 @@ export default {
                                                 <div class="flex items-center space-x-3">
                                                     <div class="avatar">
                                                         <div class="mask mask-squircle w-12 h-12">
-                                                            <img :src="`https://62.3.14.249${user.pfp}`"
+                                                            <img :src="`https://ticket-backend.iran.liara.run${user.pfp}`"
                                                                 alt="Avatar Tailwind CSS Component" />
                                                         </div>
                                                     </div>

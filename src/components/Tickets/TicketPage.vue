@@ -521,16 +521,16 @@ export default {
             token: null,
             system: null,
             // APIs
-            ticketRolesDetails: 'https://62.3.14.249/api/tickets/roles/details/', // tid
-            userDetailsAPI: 'https://62.3.14.249/api/users/details/', // uid
-            ticketRolesMainDetailsAPI: 'https://62.3.14.249/api/ticketsroles/details/', // pk
-            ticketsAddAPI: 'https://62.3.14.249/api/tickets/add/', // tid, uid
-            ticketRoleListAPI: 'https://62.3.14.249/api/tickets/roles/list/',
-            usersSystemAPI: 'https://62.3.14.249/api/systems/details/users/',
-            userAPI: "https://62.3.14.249/api/users/details/ata/", // e.g https://62.3.14.249/api/users/details/1
-            ticketDetailsAPI: 'https://62.3.14.249/api/tickets/details/', // tid
+            ticketRolesDetails: 'https://ticket-backend.iran.liara.run/api/tickets/roles/details/', // tid
+            userDetailsAPI: 'https://ticket-backend.iran.liara.run/api/users/details/', // uid
+            ticketRolesMainDetailsAPI: 'https://ticket-backend.iran.liara.run/api/ticketsroles/details/', // pk
+            ticketsAddAPI: 'https://ticket-backend.iran.liara.run/api/tickets/add/', // tid, uid
+            ticketRoleListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/list/',
+            usersSystemAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/users/',
+            userAPI: "https://ticket-backend.iran.liara.run/api/users/details/ata/", // e.g https://ticket-backend.iran.liara.run/api/users/details/1
+            ticketDetailsAPI: 'https://ticket-backend.iran.liara.run/api/tickets/details/', // tid
             referralLinkURL: 'http://localhost:5173/tickets/',
-            predefinedMessageSystemAPI: 'https://62.3.14.249/api/system/predefinedmsg/', // sysid
+            predefinedMessageSystemAPI: 'https://ticket-backend.iran.liara.run/api/system/predefinedmsg/', // sysid
             // ticket role data
             roleReadMessage: false,
             roleWriteMessage: false,
@@ -543,10 +543,10 @@ export default {
             roleManageSystem: false,
             roleManageRoles: false,
             roleManageMembers: false,
-            ticketMessagesAPI: 'https://62.3.14.249/api/tickets/messages/details/', // tid
-            deleteMessageAPI: 'https://62.3.14.249/api/messages/details/', // mid
-            createMessageAPI: 'https://62.3.14.249/api/tickets/messages/list/', // tid
-            attachmentListAPI: 'https://62.3.14.249/api/tickets/messages/details/attachment/list/',
+            ticketMessagesAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/', // tid
+            deleteMessageAPI: 'https://ticket-backend.iran.liara.run/api/messages/details/', // mid
+            createMessageAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/list/', // tid
+            attachmentListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/attachment/list/',
             messageList: null,
             finalMessageList: ref([]),
             // permission view
@@ -586,7 +586,7 @@ export default {
                     <div class="avatar mb-5">
                         <div class="w-24 rounded-full">
                             <img src="../../assets/Icons/user_icon.png" v-if="userPfp === ''" />
-                            <img :src="`https://62.3.14.249${userPfp}`" v-if="userPfp !== ''" />
+                            <img :src="`https://ticket-backend.iran.liara.run${userPfp}`" v-if="userPfp !== ''" />
                         </div>
                         <div class="grid place-self-end text-xl" style="margin-left: 10px">
                             <h3 class="" style="margin-top: 30%">{{ username }}</h3>

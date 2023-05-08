@@ -41,12 +41,12 @@ export default {
             customFields: {},
             customFieldsKey: [],
             // APIs
-            ticketListAPI: 'https://62.3.14.249/api/tickets/list/',
-            ticketRoleListAPI: 'https://62.3.14.249/api/tickets/roles/list/',
-            messageListAPI: 'https://62.3.14.249/api/tickets/messages/list/',
-            attachmentListAPI: 'https://62.3.14.249/api/tickets/messages/details/attachment/list/',
-            systemUsersWithRolesAPI: 'https://62.3.14.249/api/systems/details/users/withroles/', // sys_id
-            postDefaultMessageAPI: 'https://62.3.14.249/api/tickets/send/defaultmessage/',
+            ticketListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/list/',
+            ticketRoleListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/list/',
+            messageListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/list/',
+            attachmentListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/attachment/list/',
+            systemUsersWithRolesAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/users/withroles/', // sys_id
+            postDefaultMessageAPI: 'https://ticket-backend.iran.liara.run/api/tickets/send/defaultmessage/',
         }
     },
     methods: {

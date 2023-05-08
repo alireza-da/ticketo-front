@@ -17,7 +17,7 @@ export default {
             discordId: 0,
             discordUsername: "",
             // APIs 
-            discordTokenAPI: 'https://62.3.14.249/api/ata/discord/',
+            discordTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/discord/',
             discordOfficialEndpointAPI: 'https://discord.com/api/v10/',
             discordTokenEndpoint: 'oauth2/token',
             redirectUri: 'http://localhost:5173/auth/discord'

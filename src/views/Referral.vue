@@ -17,8 +17,8 @@ export default {
             refUrl: null,
             token: null,
             // APIs
-            sysRefAPI: 'https://62.3.14.249/api/systems/details/referral/', //'<str:referral>/<int:uid>'
-            userAPI: 'https://62.3.14.249/api/users/details/ata/'
+            sysRefAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/referral/', //'<str:referral>/<int:uid>'
+            userAPI: 'https://ticket-backend.iran.liara.run/api/users/details/ata/'
         }
     },
     async created() {

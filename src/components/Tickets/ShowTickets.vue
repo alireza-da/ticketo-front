@@ -225,11 +225,11 @@ export default {
             closedTicketList: [],
             is_closed: false,
             // APIs
-            systemDetailsAPI: 'https://62.3.14.249/api/systems/details/', // sys id
-            findTicketOwnerAPI: 'https://62.3.14.249/api/tickets/roles/ticketowner/', // tid
-            categryListAPI: 'https://62.3.14.249/api/categories/details/', // cid
-            verifiedCategoriesAPI: 'https://62.3.14.249/api/category/role/user/', // uid/sysid
-            categoryDetailsAPI: 'https://62.3.14.249/api/system/categories/details/', // <int:sysid>
+            systemDetailsAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/', // sys id
+            findTicketOwnerAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/ticketowner/', // tid
+            categryListAPI: 'https://ticket-backend.iran.liara.run/api/categories/details/', // cid
+            verifiedCategoriesAPI: 'https://ticket-backend.iran.liara.run/api/category/role/user/', // uid/sysid
+            categoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // <int:sysid>
         }
     }
 

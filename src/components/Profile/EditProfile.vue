@@ -67,7 +67,7 @@ export default {
     data() {
         return {
 
-            userAPI: "https://62.3.14.249/api/users/details/ata/",
+            userAPI: "https://ticket-backend.iran.liara.run/api/users/details/ata/",
             createUserAPI: null,
             name: null,
             email: null,
@@ -89,8 +89,8 @@ export default {
         this.email = this.userData.email
         this.steamHex = this.userData.steam_hex
         this.discordId = this.userData.discord_id
-        this.createUserAPI = `https://62.3.14.249/api/users/details/${this.userData.id}`
-        this.pfp = 'https://62.3.14.249' + this.userData.pfp
+        this.createUserAPI = `https://ticket-backend.iran.liara.run/api/users/details/${this.userData.id}`
+        this.pfp = 'https://ticket-backend.iran.liara.run' + this.userData.pfp
 
 
     },

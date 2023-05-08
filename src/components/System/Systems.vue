@@ -32,10 +32,10 @@ export default {
             passedSystems: [],
             passedUserData: [],
             // APIs //
-            sysRoleAPI: "https://62.3.14.249/api/roles/details/", // roles/details/<int:sysid>/<int:uid>,
-            roleListAPI: "https://62.3.14.249/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
-            sysListAPI: "https://62.3.14.249/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
-            sysCategoryListAPI: 'https://62.3.14.249/api/system/categories/list/',
+            sysRoleAPI: "https://ticket-backend.iran.liara.run/api/roles/details/", // roles/details/<int:sysid>/<int:uid>,
+            roleListAPI: "https://ticket-backend.iran.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
+            sysListAPI: "https://ticket-backend.iran.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
+            sysCategoryListAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/list/',
             // create system data
             sysName: "",
             sysAbout: "",

@@ -9,4 +9,4 @@ deploy:
     - main
   script:
     - sudo npm i -g @liara/cli@3
-    - liara deploy --app ticket-front --api-token $LIARATOKEN --detach
+    - liara deploy --app ticket-frontend --api-token $LIARATOKEN --detach

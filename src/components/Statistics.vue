@@ -43,12 +43,12 @@ export default {
             allTickets: [],
             systems: [],
             // APIs
-            systemsListAPI: 'https://62.3.14.249/api/systems/list/',
-            ticketsAPI: "https://62.3.14.249/api/users/details/tickets/", // e.g https://62.3.14.249/api/users/details/tickets/1
-            ticketListAPI: 'https://62.3.14.249/api/tickets/list/',
-            userSystemsAPI: "https://62.3.14.249/api/systems/details/user/", // e.g https://62.3.14.249/api/systems/details/user/1
-            userAPI: "https://62.3.14.249/api/users/details/ata/", // e.g https://62.3.14.249/api/users/details/1
-            serverMediaAPI: 'https://62.3.14.249', //path
+            systemsListAPI: 'https://ticket-backend.iran.liara.run/api/systems/list/',
+            ticketsAPI: "https://ticket-backend.iran.liara.run/api/users/details/tickets/", // e.g https://ticket-backend.iran.liara.run/api/users/details/tickets/1
+            ticketListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/list/',
+            userSystemsAPI: "https://ticket-backend.iran.liara.run/api/systems/details/user/", // e.g https://ticket-backend.iran.liara.run/api/systems/details/user/1
+            userAPI: "https://ticket-backend.iran.liara.run/api/users/details/ata/", // e.g https://ticket-backend.iran.liara.run/api/users/details/1
+            serverMediaAPI: 'https://ticket-backend.iran.liara.run', //path
         }
     },
     methods: {

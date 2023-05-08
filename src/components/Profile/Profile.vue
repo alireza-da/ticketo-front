@@ -23,7 +23,7 @@ export default {
             navigatedTicket: null,
             token: null,
             // API URIs
-            userAPI: "https://62.3.14.249/api/users/details/ata/", // e.g https://62.3.14.249/api/users/details/1
+            userAPI: "https://ticket-backend.iran.liara.run/api/users/details/ata/", // e.g https://ticket-backend.iran.liara.run/api/users/details/1
             userData: null,
             systemsData: null,
             ticketsData: null,
