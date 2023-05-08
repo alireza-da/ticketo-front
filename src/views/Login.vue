@@ -195,7 +195,7 @@ export default {
                         <label class="label justify-start">
                             <i class='bx bxl-gmail mr-2'></i><span class="label-text">{{ lang[selectedLang].email }}</span>
                         </label>
-                        <input v-model="email" class="input input-bordered" placeholder="email" type="text" />
+                        <input v-model="email" class="input input-bordered" placeholder="email" type="email" />
                     </div>
                     <div class="form-control">
                         <label class="label justify-start">
