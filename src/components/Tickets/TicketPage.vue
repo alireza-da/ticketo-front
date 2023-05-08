@@ -529,7 +529,7 @@ export default {
             usersSystemAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/users/',
             userAPI: "https://ticket-backend.iran.liara.run/api/users/details/ata/", // e.g https://ticket-backend.iran.liara.run/api/users/details/1
             ticketDetailsAPI: 'https://ticket-backend.iran.liara.run/api/tickets/details/', // tid
-            referralLinkURL: 'http://localhost:5173/tickets/',
+            referralLinkURL: 'https://ticket-backend.iran.liara.run/tickets/',
             predefinedMessageSystemAPI: 'https://ticket-backend.iran.liara.run/api/system/predefinedmsg/', // sysid
             // ticket role data
             roleReadMessage: false,
