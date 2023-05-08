@@ -121,7 +121,7 @@ export default {
                 "discord_id": this.discordId,
                 "steam_hex": this.steamHex,
                 "name": this.name,
-
+                "is_staff": this.userData.is_staff
 
             }, {
                 headers: { "Authorization": `Token ${this.token}`, "Content-Type": "multipart/form-data" }
