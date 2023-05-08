@@ -916,7 +916,7 @@ export default {
 <template>
     <div class="w-full h-full p-3 flex-col overflow-auto">
         <div class="card w-full bg-base-100 shadow-xl mb-4">
-            <figure><img :src="`${serverMediaAPI}${passedSys['banner']}`" alt="Shoes" class="w-full h-20"
+            <figure><img :src="`${serverMediaAPI}${passedSys['banner']}`" alt="System Banner" class="w-full h-20"
                     style="object-fit: none;" /></figure>
             <div class="card-body">
                 <h2 class="card-title">

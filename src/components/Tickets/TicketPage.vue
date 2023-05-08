@@ -1041,9 +1041,8 @@ export default {
                 <div v-if="clientWriteMessage && ticketStatus !== 'Closed'"
                     class="w-full flex max-h-1/5 object-bottom inset-x-0 bottom-0 absolute ">
                     <a v-if="clientUploadMedia" class="btn btn-circle btn-outline btn-accent" for="uploadFile"
-                        href="https://uupload.ir/">
+                        href="https://uupload.ir/" target="_blank">
                         <i class='bx bx-cloud-upload lg text-xl'> </i>
-
                     </a>
                     <label v-if="clientUploadMedia" class="btn btn-circle btn-outline btn-accent"
                         @click="startAudioRecording">

@@ -114,6 +114,39 @@ export default {
 
             }
         },
+        findCatSystem(cat) {
+            for (const sys of this.systemList) {
+                if (sys.id === cat.sys_id) {
+                    return sys
+                }
+            }
+        },
+        findOpenTickets(cat) {
+            let result = []
+            if (cat === 'all') {
+                for (const t of this.$props.passedTicketList) {
+                    if (t.is_closed === false) {
+                        result.push(t)
+                    }
+                }
+                return result
+            }
+            for (const t of this.$props.passedTicketList) {
+
+                if (t.category[0]) {
+
+                    if (t.is_closed === false && t.category[0].id === cat.id) {
+                        result.push(t)
+                    }
+                    continue
+                }
+                if (t.is_closed === false && t.category === cat.id) {
+                    result.push(t)
+                }
+
+            }
+            return result
+        },
         async toggleCloseList() {
             this.is_closed = !this.is_closed
             this.ticketList = []
@@ -125,21 +158,21 @@ export default {
             }
         },
         async isVerifiedCat(t) {
-            
+            console.log(t);
             var result = false
-            if(t.ticketOwner && t.ticketOwner.id === this.userData.id){
+            if (t.ticketOwner && t.ticketOwner.id === this.userData.id) {
                 return true
             }
             else await axios.get(`${this.findTicketOwnerAPI}${t.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(response => {
-                if(response.data.id === this.userData.id)
+                if (response.data.id === this.userData.id)
                     result = true
             }).catch(error => {
             })
-            if(result){
+            if (result) {
                 return result
             }
             // fetching valid categories of each system for a user
-            
+
             await axios.get(`${this.verifiedCategoriesAPI}${this.$props.userData.id}/${t.sys_id}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
                 for (const cr of res.data) {
                     if (cr.category === t.category && cr.for_closed === this.is_closed) {
@@ -238,29 +271,36 @@ export default {
 
 
 <template>
-    <div>
+    <div class="flex-col">
         <div class="justify-items-center focus:outline-none focus:ring focus:ring-neutral" style="text-align: center">
-            <div class="dropdown dropdown-hover  mr-2 ">
-                <label class="btn btn-outline btn-neutral bg-primary text-white hover:(bg-accent text-black)">{{
-                    lang[selectedLang].category }}</label>
-                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a @click="filterByCategory('all')">All</a></li>
-                    <li v-for="cat in categories" v-bind:key="cat.id"><a @click="filterByCategory(cat)">{{ cat.name }}</a>
-                    </li>
-                </ul>
+            <div class="btn-group">
+                <label for="search" class="input-group mr-2"><span><i class='bx bx-search-alt'></i></span><input id="search"
+                        class="input input-bordered w-full max-w-xs" :placeholder="lang[selectedLang].searchticket"
+                        type="text" @keyup="searchTable('ticketsTable', 'search')" /></label>
+                <div class="dropdown dropdown-hover">
+                    <label class="btn btn-outline btn-neutral bg-primary text-white hover:(bg-accent text-black)">{{
+                        lang[selectedLang].category }}</label>
+                    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-62">
+                        <li><a @click="filterByCategory('all')">All - {{ findOpenTickets('all').length }}</a></li>
+                        <li v-for="cat in categories" v-bind:key="cat.id"><a @click="filterByCategory(cat)">
+                                {{ findCatSystem(cat).name }} | {{ cat.name }} - {{ findOpenTickets(cat).length }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn btn-outline btn-neutral bg-primary text-white hover:(bg-accent text-black)"
+                    @click="toggleCloseList()"><i class='bx bxs-hide mr-2' v-if="!is_closed"></i><i
+                        class='bx bxs-bullseye mr-2' v-if="is_closed"></i>
+                    <p v-if="is_closed">{{ lang[selectedLang].open }}</p>
+                    <p v-if="!is_closed">{{ lang[selectedLang].closed }}</p>
+                </button>
+
+                <button class="btn btn-outline btn-neutral bg-primary text-white hover:(bg-accent text-black) mr-2"
+                    @click="create_ticket()"><i class='bx bx-plus-medical mr-2' style='color:'></i>
+                    {{ lang[selectedLang].create }}
+                </button>
+
             </div>
-            <button class="btn btn-outline btn-neutral bg-primary text-white hover:(bg-accent text-black) mr-2"
-                @click="toggleCloseList()"><i class='bx bxs-hide mr-2' v-if="!is_closed"></i><i class='bx bxs-bullseye mr-2'
-                    v-if="is_closed"></i>
-                <p v-if="is_closed">{{ lang[selectedLang].open }}</p>
-                <p v-if="!is_closed">{{ lang[selectedLang].closed }}</p>
-            </button>
-            <input id="search" class="input input-bordered w-full max-w-xs" :placeholder="lang[selectedLang].searchticket"
-                type="text" @keyup="searchTable('ticketsTable', 'search')" />
-            <button class="btn btn-outline btn-neutral bg-primary text-white hover:(bg-accent text-black) ml-2"
-                @click="create_ticket()"><i class='bx bx-plus-medical mr-2' style='color:'></i>
-                {{ lang[selectedLang].create }}
-            </button>
+
 
         </div>
 
