@@ -20,7 +20,7 @@ export default {
             discordTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/discord/',
             discordOfficialEndpointAPI: 'https://discord.com/api/v10/',
             discordTokenEndpoint: 'oauth2/token',
-            redirectUri: 'http://localhost:5173/auth/discord'
+            redirectUri: 'https://ticket.sunrp.ir/auth/discord'
         }
 
     },

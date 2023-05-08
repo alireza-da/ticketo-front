@@ -31,7 +31,7 @@ export default {
             googleAccesTokenAPI: 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=',
             discordAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/discord/',
             steamAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/steam/',
-            discordOauth2API: 'https://discord.com/api/oauth2/authorize?client_id=1100826836516229191&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fauth%2Fdiscord&response_type=code&scope=identify',
+            discordOauth2API: 'https://discord.com/api/oauth2/authorize?client_id=1100826836516229191&redirect_uri=https%3A%2F%2Fticket.sunrp.ir%2Fauth%2Fdiscord&response_type=code&scope=identify',
             createUserAPI: 'https://ticket-backend.iran.liara.run/api/users/create/',
             roleListAPI: "https://ticket-backend.iran.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
             sysListAPI: "https://ticket-backend.iran.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
@@ -234,12 +234,12 @@ export default {
                                     value="http://specs.openid.net/auth/2.0/identifier_select" />
                                 <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" />
                                 <input type="hidden" name="openid.mode" value="checkid_setup" />
-                                <input type="hidden" name="openid.realm" value="http://localhost:5173/auth/steam" />
-                                <input type="hidden" name="openid.return_to" value="http://localhost:5173/auth/steam" />
+                                <input type="hidden" name="openid.realm" value="https://ticket.sunrp.ir/auth/steam" />
+                                <input type="hidden" name="openid.return_to" value="https://ticket.sunrp.ir/auth/steam" />
                                 <button class="btn btn-circle justify-center"><img src="../assets/Icons/steam.png"></button>
                             </form>
                             <a class="btn btn-circle justify-center"
-                                href='https://discord.com/api/oauth2/authorize?client_id=1100826836516229191&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fauth%2Fdiscord&response_type=code&scope=identify'><img
+                                :href='discordOauth2API'><img
                                     src="../assets/Icons/discord.png">
                             </a>
 

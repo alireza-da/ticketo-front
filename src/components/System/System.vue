@@ -930,7 +930,7 @@ export default {
                 </h2>
                 <p>{{ passedSys['about_system'] }}</p>
                 <p>Referral Link <a class="link link-success"
-                        :href="`http://localhost:5173/referral/${passedSys.ref_url}`">http://localhost:5173/referral/{{
+                        :href="`https://ticket.sunrp.ir/referral/${passedSys.ref_url}`">https://ticket.sunrp.ir/referral/{{
                             passedSys.ref_url }}</a><i class='bx bx-clipboard ml-2'></i></p>
                 <div class="card-actions justify-end">
                     <div class="badge badge-outline"> {{ lang[selectedLang].support }}</div>

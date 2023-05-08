@@ -62,7 +62,7 @@ export default {
         exitRestrictedMode(i) {
             if (this.restrictedMode) {
                 this.restrictedMode = false
-                location.href = `http://localhost:5173/dashboard`                
+                location.href = `https://ticket.sunrp.ir/dashboard`                
             }
         },
         async selectTab(i) {
