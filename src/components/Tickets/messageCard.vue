@@ -41,12 +41,12 @@
                 target="_blank">
                 <video :src="backendBaseAPI + video" class="box-border h-64 w-64" controls></video>
             </a>
-            <a class="hover:cursor-pointer" v-for="photo in externalPhotoList" v-bind:key="photo"
-                :href="backendBaseAPI + photo" target="_blank">
+            <a class="hover:cursor-pointer link" v-for="photo in externalPhotoList" v-bind:key="photo"
+                :href="photo" target="_blank">
                 <img :src="photo" class="box-border h-64 w-64 border-4 border-gray" />
             </a>
-            <a class="hover:cursor-pointer" v-for="video in externalVideoList" v-bind:key="video"
-                :href="backendBaseAPI + video" target="_blank">
+            <a class="hover:cursor-pointer link" v-for="video in externalVideoList" v-bind:key="video"
+                :href="video" target="_blank">
                 <video :src="video" class="box-border h-64 w-64" controls></video>
             </a>
             <a class="hover:cursor-pointer" v-for="file in fileList" v-bind:key="file" :href="backendBaseAPI + file"

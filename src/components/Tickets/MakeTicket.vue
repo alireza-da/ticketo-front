@@ -148,6 +148,7 @@ export default {
                             "delete_ticket": r.delete_ticket,
                             "create_ticket": true,
                             "update_ticket": true,
+                            
                         }, { headers: { Authorization: `Token ${this.token}` } })
                     }
                 }

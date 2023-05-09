@@ -111,20 +111,7 @@ export default {
                 await this.fetchTicketMembers()
             })
         },
-        async updateTicketRole(tr) {
-            console.log({
-                read_messages: this.roleReadMessage,
-                write_messages: this.roleWriteMessage,
-                delete_messages: this.roleDeleteMessage,
-                read_history: this.roleReadHistory,
-                upload_media: this.roleUploadMedia,
-                delete_ticket: this.roleDeleteTicket,
-                create_ticket: this.roleCreateTicket,
-                update_ticket: this.roleUpdateTicket,
-                manage_system: this.roleManageSystem,
-                manage_role: this.roleManageRoles,
-                manage_members: this.roleManageMembers
-            });
+        async updateTicketRole(tr) {            
             await axios.put(`${this.ticketRolesMainDetailsAPI}${tr.id}`, {
                 sys_id: tr.sys_id,
                 name: tr.name,
@@ -185,19 +172,47 @@ export default {
                 this.userData = response.data
             })
         },
+        async findRolesOfAUser(uid) {
+            let result
+            await axios.get(`${this.userRolesAPI}${this.system.id}/${uid}`, { headers: { "Authorization": `Token ${this.token}` } }).then(
+                response => {
+                    result = response.data
+                }
+            )
+            return result
+        },
+        findHighestSysRole(uid) {
+
+            var roles = this.findRolesOfAUser(uid)
+            if (roles === undefined) {
+                return {}
+            }
+            var level = 0
+            var result = roles[0]
+            roles.forEach(element => {
+                if (element['level'] > level) {
+                    level = element['level']
+                    result = element
+                }
+            })
+            return result
+        },
         async fetchUserHR() {
             var hr = this.findHighestRole(this.userData.id)
             this.clientCreateTicket = hr.create_ticket
             this.clientDeleteMessage = hr.delete_messages
             this.clientDeleteTicket = hr.delete_ticket
-            this.clientManageRoles = hr.manage_role
-            this.clientManageMembers = hr.manage_members
-            this.clientManageSystem = hr.manage_system
+           
             this.clientReadHistory = hr.read_history
             this.clientReadMessage = hr.read_messages
             this.clientUpdateTicket = hr.update_ticket
             this.clientUploadMedia = hr.upload_media
             this.clientWriteMessage = hr.write_messages
+            hr = this.findHighestSysRole(this.userData.id)
+            console.log(hr)
+            this.clientManageRoles = hr.manage_role
+            this.clientManageMembers = hr.manage_members
+            this.clientManageSystem = hr.manage_system
         },
         async closeTicket() {
             await axios.put(`${this.ticketDetailsAPI}${this.$props.ticket.id}`, {
@@ -255,7 +270,7 @@ export default {
             for (let msg of this.messageList) {
                 if (msg.user_id == this.userData.id) {
                     this.finalMessageList.push({
-                        sender: "Me",
+                        sender: "me",
                         message: msg
                     })
                 } else {
@@ -274,7 +289,6 @@ export default {
             this.doneFetchingChat = true
         },
         async getUser(msg) {
-            console.log(msg);
             let result
             if (msg.user_id)
                 await axios.get(`${this.userDetailsAPI}${msg.user_id}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
@@ -282,7 +296,6 @@ export default {
                 })
             else
                 result = { name: "System" }
-            console.log(result);
             return result
         },
         async fetchSys() {
@@ -478,7 +491,7 @@ export default {
 
                     // If any error occurs then handles the error
                     .catch(function (err) {
-                        console.log(err.name, err.message);
+                        console.error(err.name, err.message);
                     });
 
             }
