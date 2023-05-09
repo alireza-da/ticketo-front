@@ -30,6 +30,7 @@ export default {
                 if (!t.is_deleted && await this.isVerifiedCat(t) && t.is_closed === this.is_closed) {
                     this.ticketList.push(t)
                     await this.fetchSys(t)
+                    await this.fetchClientRolesOfSystem(t.sys_id)
                 }
 
             }
@@ -47,16 +48,21 @@ export default {
         for (const t of this.$props.passedTicketList) {
             if (!t.is_deleted && await this.isVerifiedCat(t) && t.is_closed === this.is_closed) {
                 this.ticketList.push(t)
-
                 await this.fetchSys(t)
+                if(!this.clientRoles[t.sys_id])
+                    await this.fetchClientRolesOfSystem(t.sys_id)
             }
-
         }
         this.doneFetchingTickets = true
         this.fetchCategories()
 
     },
     methods: {
+        async fetchClientRolesOfSystem(sid) {
+            await axios.get(`${this.userRolesAPI}${sid}/${this.userData.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
+                this.clientRoles[sid] = res.data
+            })
+        },
         sortTickets(i) {
             this.asc = !this.asc
             const comparer = (v1, v2) => {
@@ -65,7 +71,7 @@ export default {
                         return this.asc ? v1.category.localeCompare(v2.category[0].name) : v2.category[0].name.localeCompare(v1.category[0].name)
 
                     case 'name':
-                        return this.asc ? v1.category.localeCompare(v2.name) : v2.name.localeCompare(v1.name)
+                        return this.asc ? v1.name.localeCompare(v2.name) : v2.name.localeCompare(v1.name)
 
                     case 'status':
                         return this.asc ? v1.status.localeCompare(v2.status) : v2.status.localeCompare(v1.status)
@@ -163,16 +169,25 @@ export default {
             }
         },
         async isVerifiedCat(t) {
-            console.log(t);
+            // check if owner of system
+            if (this.clientRoles[t.sys_id]) {
+                for (const r of this.clientRoles[t.sys_id]) {
+                    if (r.owner){
+                        return true
+                    }
+                }
+            }
             var result = false
             if (t.ticketOwner && t.ticketOwner.id === this.userData.id) {
                 return true
             }
-            else await axios.get(`${this.findTicketOwnerAPI}${t.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(response => {
-                if (response.data.id === this.userData.id)
-                    result = true
-            }).catch(error => {
-            })
+            else if (!t.ticketOwner) {
+                await axios.get(`${this.findTicketOwnerAPI}${t.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(response => {
+                    if (response.data.id === this.userData.id)
+                        result = true
+                }).catch(error => {
+                })
+            }
             if (result) {
                 return result
             }
@@ -188,6 +203,7 @@ export default {
                     }
                 }
             })
+
             return result
         },
         create_ticket() {
@@ -253,7 +269,7 @@ export default {
     },
     data() {
         return {
-
+            clientRoles: {},
             ticketList: [],
             systemList: [],
             token: null,
@@ -269,6 +285,7 @@ export default {
             categryListAPI: 'https://ticket-backend.iran.liara.run/api/categories/details/', // cid
             verifiedCategoriesAPI: 'https://ticket-backend.iran.liara.run/api/category/role/user/', // uid/sysid
             categoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // <int:sysid>
+            userRolesAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
         }
     }
 
@@ -313,7 +330,7 @@ export default {
 
         <div class="overflow-x-auto  overflow-y-auto">
             <progress class="progress w-full progress-accent" v-if="!doneFetchingTickets"></progress>
-            <table class="table w-full " id="ticketsTable"  v-if="doneFetchingTickets">
+            <table class="table w-full " id="ticketsTable" v-if="doneFetchingTickets">
                 <!-- head -->
                 <thead>
                     <tr>
@@ -342,8 +359,8 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    <Ticket v-for="ticket in ticketList" :tickets="ticket" :key="ticket.id"  
+
+                    <Ticket v-for="ticket in ticketList" :tickets="ticket" :key="ticket.id"
                         :index="ticketList.indexOf(ticket)" @select_ticket="select_ticket(ticket)">
                     </Ticket>
                 </tbody>

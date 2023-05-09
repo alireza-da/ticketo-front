@@ -91,11 +91,9 @@ export default {
                         if (element.is_closed) {
                             element.status = "Closed"
                         } else element.status = "Open"
-                        console.log(element.ticketOwner);
                     })
                 });
             })
-            console.log(this.tickets);
         },
         async fetchCategories() {
             await axios.get(`${this.sysCategoryDetailsAPI}${this.passedSys.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
@@ -131,6 +129,7 @@ export default {
             })
         },
         async fetchClientUserData() {
+            this.doneFetchingRoles = false
             await axios.get(`${this.userDataAPI}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
                 this.userData = res.data
                 var hr = this.findHighestRole(this.userData.id)
@@ -145,6 +144,7 @@ export default {
                 this.clientUpdateTicket = hr.update_ticket
                 this.clientUploadMedia = hr.upload_media
                 this.clientWriteMessage = hr.write_messages
+                this.doneFetchingRoles = true
             })
         },
         async changeTicketPrefix() {
@@ -273,7 +273,8 @@ export default {
                     await axios.post(`${this.categoryRoleListAPI}`, {
                         category: cat.id,
                         role: role.id
-                    }, { headers: { Authorization: `Token ${this.token}` } })
+                    }, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
+                    })
                 }
                 else {
                     await axios.delete(`${this.categoryRoleDeleteAPI}${cat.id}`, { headers: { Authorization: `Token ${this.token}` } })
@@ -322,7 +323,6 @@ export default {
             return result
         },
         async deleteUser(uid) {
-            console.log(uid);
             await axios.delete(`${this.userDetailsAPI}${uid}`, { headers: { 'Authorization': `Token ${this.token}` } }).then(async respone => {
                 this.$notify({
                     group: "foo",
@@ -391,7 +391,6 @@ export default {
             })
         },
         async removeUserFromSys(uid) {
-            console.log(uid);
             await axios.delete(`${this.removeUserFromSysAPI}${this.passedSys['id']}/${uid}`, { headers: { 'Authorization': `Token ${this.token}` } }).then(async respone => {
                 this.$notify({
                     group: "foo",
@@ -902,7 +901,9 @@ export default {
             customFields: "",
             // predefined message
             pmTitle: "",
-            pmContent: ""
+            pmContent: "",
+            // loading states
+            doneFetchingRoles: false
         }
     }
 
@@ -986,9 +987,9 @@ export default {
                 </div>
 
             </div>
-
+            <progress class="progress w-full progress-accent mt-2" v-if="!doneFetchingRoles"></progress>
             <div class="divider" v-if="clientManageMembers"><i class='bx bx-group'></i>Users</div>
-            <div class="grid h-20 card bg-base-300 rounded-box place-items-center" v-if="clientManageMembers">
+            <div class="grid h-20 card bg-base-300 rounded-box place-items-center" v-if="clientManageMembers && doneFetchingRoles">
                 <div class="btn-group inline-block">
                     <label class="btn" for="user-manage-modal"><i class='bx bxs-cog mr-2'></i>
                         {{ lang[selectedLang].managepannel }}</label>
@@ -1507,7 +1508,7 @@ export default {
                         {{ lang[selectedLang].manage }}</label>
                     <input type="checkbox" id="role-manage-modal" class="modal-toggle" />
                     <div class="modal modal-bottom lg:modal-middle w-full h-full">
-                        <div class="modal-box w-11/12 max-w-7xl">
+                        <div class="modal-box w-11/12 max-w-7xl h-full">
                             <h3 class="font-bold text-lg"> {{ lang[selectedLang].systemrolepannel }}</h3>
 
                             <div class="modal-action justify-start mb-2">
