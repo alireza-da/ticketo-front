@@ -401,7 +401,11 @@ export default {
             }
             return 'other'
         },
-
+        async sendNewMessageByEnter(){
+            if(event.key === "Enter"){
+                await this.sendNewMessage()
+            }
+        },
         async sendNewMessage() {
             this.recordingState === 0
             // post message
@@ -1191,7 +1195,7 @@ export default {
                     <input class="mr-1" id="uploadFile" style="width: 0px ; height:0px" type="file"
                         v-on:change="setMessageAttachment">
                     <input v-model="sendingMessage" class="input input-bordered grow"
-                        :placeholder="lang[selectedLang].addyourmessage" type="text" />
+                        :placeholder="lang[selectedLang].addyourmessage" type="text" @keypress="sendNewMessageByEnter"/>
                     <button class="btn btn-outline btn-success" @click="sendNewMessage"> {{ lang[selectedLang].send }} <i
                             class='bx bxs-send' style="padding-left: 3px "></i>
                     </button>
