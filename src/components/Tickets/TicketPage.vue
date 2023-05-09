@@ -65,7 +65,6 @@ export default {
             })
         },
         getUserById(uid) {
-            console.log(uid);
             for (const u of this.sysUsers) {
                 if (u.id === uid) {
                     return u
@@ -230,7 +229,7 @@ export default {
             })
 
         },
-        async safeDeleteTicket(){
+        async safeDeleteTicket() {
             await axios.put(`${this.ticketDetailsAPI}${this.$props.ticket.id}`, {
                 sys_id: this.$props.ticket.sys_id,
                 is_deleted: true,
@@ -256,17 +255,35 @@ export default {
             for (let msg of this.messageList) {
                 if (msg.user_id == this.userData.id) {
                     this.finalMessageList.push({
-                        sender: "me",
+                        sender: "Me",
                         message: msg
                     })
                 } else {
-                    this.finalMessageList.push({
-                        sender: "other",
-                        message: msg
-                    })
+                    if (msg.user_id)
+                        this.finalMessageList.push({
+                            sender: this.getUserById(msg.user_id).name,
+                            message: msg
+                        })
+                    else
+                        this.finalMessageList.push({
+                            sender: "System",
+                            message: msg
+                        })
                 }
             }
             this.doneFetchingChat = true
+        },
+        async getUser(msg) {
+            console.log(msg);
+            let result
+            if (msg.user_id)
+                await axios.get(`${this.userDetailsAPI}${msg.user_id}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
+                    result = res
+                })
+            else
+                result = { name: "System" }
+            console.log(result);
+            return result
         },
         async fetchSys() {
             for (const s of this.$props.systems) {
@@ -646,9 +663,11 @@ export default {
                                 <div class="grid grid-cols-6 btn-group">
                                     <button class="btn btn-outline btn-accent " @click="close_ticket_page()">
                                         <i class='bx bx-arrow-back'></i></button>
-                                    <button class="btn btn-outline btn-accent " @click="safeDeleteTicket" v-if="clientDeleteTicket">
+                                    <button class="btn btn-outline btn-accent " @click="safeDeleteTicket"
+                                        v-if="clientDeleteTicket">
                                         <i class='bx bx-trash'></i></button>
-                                    <button class="btn btn-outline btn-accent " @click="openTicket" v-if="clientManageSystem || clientUpdateTicket">
+                                    <button class="btn btn-outline btn-accent " @click="openTicket"
+                                        v-if="clientManageSystem || clientUpdateTicket">
                                         <i class='bx bxs-envelope-open'></i></button>
                                     <label v-if="clientManageSystem || clientUpdateTicket || clientManageRoles"
                                         class="btn btn-accent btn-outline" for="ticket-members-modal">
@@ -1058,12 +1077,12 @@ export default {
                             class='bx bxs-comment-add lg text-xl'></i></label>
                     <input type="checkbox" id="sys-prdefinedmsg-modal" class="modal-toggle" />
                     <div class="modal">
-                        
+
                         <div class="modal-box w-11/12 max-w-5xl">
-                            
+
                             <h3 class="font-bold text-lg">{{ lang[selectedLang].protocolMessages }}</h3>
-                            <input type="text" placeholder="Search" class="input w-full max-w-xs mb-5"
-                                    id="predefmsgsearch" @keyup="searchTable('predefmsgTable', 'predefmsgsearch')" />
+                            <input type="text" placeholder="Search" class="input w-full max-w-xs mb-5" id="predefmsgsearch"
+                                @keyup="searchTable('predefmsgTable', 'predefmsgsearch')" />
                             <table class="table w-full" id="predefmsgTable">
                                 <!-- head -->
                                 <thead>
@@ -1116,7 +1135,8 @@ export default {
                     </div>
 
 
-                    <input id="uploadFile" style="width: 0px ; height:0px" type="file" v-on:change="setMessageAttachment">
+                    <input class="mr-1" id="uploadFile" style="width: 0px ; height:0px" type="file"
+                        v-on:change="setMessageAttachment">
                     <input v-model="sendingMessage" class="input input-bordered grow"
                         :placeholder="lang[selectedLang].addyourmessage" type="text" />
                     <button class="btn btn-outline btn-success" @click="sendNewMessage"> {{ lang[selectedLang].send }} <i

@@ -66,9 +66,9 @@
                     v-if="highestRole.delete_messages"><i class='bx bx-trash-alt'></i></a>
 
             </div>
-            <div v-else>
+            <!-- <div v-else>
                 <a class=" text-xs hover:text-sm hover:font-bold hover:text-base-300  hover:cursor-pointer">reply</a>
-            </div>
+            </div> -->
         </div>
 
 
