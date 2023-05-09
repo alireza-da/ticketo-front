@@ -121,5 +121,7 @@ export const fa = {
     'content': 'محتوا',
     'title': 'عنوان',
     'send': 'ارسال',
-    'defaultMessage': 'پیام پیش فرض'
+    'defaultMessage': 'پیام پیش فرض',
+    'popout': 'پنجره جدید',
+    'closeticketwarnmsg': 'آیا مطمئنید میخواهید تیکت را ببندید؟ تیکت بسته شده مجدد قابل بازگشایی از سمت شما نیست!'
 }

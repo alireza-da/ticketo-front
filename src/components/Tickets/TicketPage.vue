@@ -661,17 +661,18 @@ export default {
                                 </div>
                                 <br>
                                 <div class="grid grid-cols-6 btn-group">
+
                                     <button class="btn btn-outline btn-accent " @click="close_ticket_page()">
-                                        <i class='bx bx-arrow-back'></i></button>
+                                        <i class='bx bx-arrow-back mr-1'></i>{{ lang[selectedLang].back }}</button>
                                     <button class="btn btn-outline btn-accent " @click="safeDeleteTicket"
                                         v-if="clientDeleteTicket">
-                                        <i class='bx bx-trash'></i></button>
+                                        <i class='bx bx-trash'></i>{{ lang[selectedLang].Delete }}</button>
                                     <button class="btn btn-outline btn-accent " @click="openTicket"
                                         v-if="clientManageSystem || clientUpdateTicket">
-                                        <i class='bx bxs-envelope-open'></i></button>
+                                        <i class='bx bxs-envelope-open mr-1'></i>{{ lang[selectedLang].open }}</button>
                                     <label v-if="clientManageSystem || clientUpdateTicket || clientManageRoles"
                                         class="btn btn-accent btn-outline" for="ticket-members-modal">
-                                        <i class='bx bxs-user-account'></i></label>
+                                        <i class='bx bxs-user-account mr-1'></i>{{ lang[selectedLang].member }}</label>
                                     <input id="ticket-members-modal" class="modal-toggle" type="checkbox" />
                                     <div class="modal modal-bottom lg:modal-middle w-full">
                                         <div class="modal-box w-11/12 max-w-7xl">
@@ -1023,10 +1024,21 @@ export default {
                                     </div>
 
 
-                                    <button class="btn btn-outline btn-accent " @click="closeTicket"><i
-                                            class='bx bx-window-close'></i></button>
+                                    <label class="btn btn-outline btn-accent " for="close-ticket-modal"><i
+                                            class='bx bx-window-close mr-1'></i>{{ lang[selectedLang].close }}</label>
+                                    <input type="checkbox" id="close-ticket-modal" class="modal-toggle" />
+                                    <div class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="font-bold text-lg">Warning</h3>
+                                            <p class="py-4">{{ lang[selectedLang].closeticketwarnmsg }}</p>
+                                            <div class="modal-action">
+                                                <label for="close-ticket-modal" class="btn btn-success hover:()" @click="closeTicket">{{lang[selectedLang].close}}</label>
+                                                <label for="close-ticket-modal" class="btn btn-error">{{lang[selectedLang].cancel}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button class="btn btn-outline btn-accent" @click="openInNewWindow"><i
-                                            class='bx bx-window-open'></i>
+                                            class='bx bx-window-open'></i>{{ lang[selectedLang].popout }}
                                     </button>
 
                                 </div>

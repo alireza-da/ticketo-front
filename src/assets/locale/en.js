@@ -119,5 +119,7 @@ export const en = {
     'send': 'Send',
     'closed': 'Closed',
     'open': 'Open',
-    'defaultMessage': 'Default Message'
+    'defaultMessage': 'Default Message',
+    'popout': 'Pop Out',
+    'closeticketwarnmsg': "Are you sure you want to close ticket? You won't be able to reopen a closed ticket!"
 }
