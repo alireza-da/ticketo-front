@@ -182,9 +182,7 @@ export default {
             return result
         },
         async findHighestSysRole(uid) {
-
             var roles = await this.findRolesOfAUser(uid)
-            console.log(roles);
             if (roles === undefined) {
                 return {}
             }
@@ -214,7 +212,6 @@ export default {
             this.clientUploadMedia = hr.upload_media
             this.clientWriteMessage = hr.write_messages
             hr = await this.findHighestSysRole(this.userData.id)
-            console.log(hr)
             this.clientManageRoles = hr.manage_role
             this.clientManageMembers = hr.manage_members
             this.clientManageSystem = hr.manage_system
