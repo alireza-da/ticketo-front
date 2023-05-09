@@ -248,6 +248,7 @@ export default {
         async fetchMessage() {
             this.messageList = []
             this.finalMessageList = []
+            this.doneFetchingChat = false
             await axios.get(`${this.ticketMessagesAPI}${this.$props.ticket.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
                 this.messageList = res.data
             })
@@ -265,7 +266,7 @@ export default {
                     })
                 }
             }
-
+            this.doneFetchingChat = true
         },
         async fetchSys() {
             for (const s of this.$props.systems) {
@@ -568,6 +569,8 @@ export default {
             mediaRecorder: null,
             recordingState: 0,
             audioData: null,
+            // loading states
+            doneFetchingChat: false,
         }
 
     }
@@ -577,8 +580,8 @@ export default {
 <template>
     <div class="flex place-items-start h-full" style=" height: 100%">
         <audio></audio>
-        <div class="flex  grow h-full ">
-
+        <button class="btn w-full h-full loading absolute inset-0" v-if="!doneFetchingChat">loading</button>
+        <div class="flex  grow h-full " v-if="doneFetchingChat">
 
             <!--            User Info-->
             <div class="card flex-shrink-0 shadow-2xl bg-base-100 w-1.4/5 h-fit" style="margin-left: 25px">

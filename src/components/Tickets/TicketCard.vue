@@ -33,7 +33,6 @@ export default {
     },
     methods: {
         display() {
-            console.log('clicked')
         },
         select_ticket() {
             this.$emit('select_ticket')

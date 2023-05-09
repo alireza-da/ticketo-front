@@ -24,6 +24,7 @@ export default {
     },
     watch: {
         async passedTicketList(newVal) {
+            this.doneFetchingTickets = false
             this.ticketList = []
             for (const t of newVal) {
                 if (!t.is_deleted && await this.isVerifiedCat(t) && t.is_closed === this.is_closed) {
@@ -32,6 +33,7 @@ export default {
                 }
 
             }
+            this.doneFetchingTickets = true
         },
         async systems(newVal) {
             this.systemList = newVal
@@ -40,6 +42,8 @@ export default {
     },
     async created() {
         this.token = localStorage.getItem('token')
+        this.doneFetchingTickets = false
+        this.ticketList = []
         for (const t of this.$props.passedTicketList) {
             if (!t.is_deleted && await this.isVerifiedCat(t) && t.is_closed === this.is_closed) {
                 this.ticketList.push(t)
@@ -48,6 +52,7 @@ export default {
             }
 
         }
+        this.doneFetchingTickets = true
         this.fetchCategories()
 
     },
@@ -257,6 +262,7 @@ export default {
             categories: [],
             closedTicketList: [],
             is_closed: false,
+            doneFetchingTickets: false,
             // APIs
             systemDetailsAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/', // sys id
             findTicketOwnerAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/ticketowner/', // tid
@@ -306,7 +312,8 @@ export default {
 
 
         <div class="overflow-x-auto  overflow-y-auto">
-            <table class="table w-full " id="ticketsTable">
+            <progress class="progress w-full progress-accent" v-if="!doneFetchingTickets"></progress>
+            <table class="table w-full " id="ticketsTable"  v-if="doneFetchingTickets">
                 <!-- head -->
                 <thead>
                     <tr>
@@ -335,7 +342,8 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <Ticket v-for="ticket in ticketList" :tickets="ticket" :key="ticket.id"
+                    
+                    <Ticket v-for="ticket in ticketList" :tickets="ticket" :key="ticket.id"  
                         :index="ticketList.indexOf(ticket)" @select_ticket="select_ticket(ticket)">
                     </Ticket>
                 </tbody>
