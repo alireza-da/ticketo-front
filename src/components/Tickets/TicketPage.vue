@@ -198,7 +198,7 @@ export default {
         },
         refreshChat(){
             // should implement with push notifications
-            setInterval(this.refreshMessages, 20000)
+            // setInterval(this.refreshMessages, 200000)
         },
         async fetchUserHR() {
             var hr = this.findHighestRole(this.userData.id)
