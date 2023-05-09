@@ -916,13 +916,14 @@ export default {
 <template>
     <div class="w-full h-full p-3 flex-col overflow-auto">
         <div class="card w-full bg-base-100 shadow-xl mb-4">
-            <figure><img :src="`${serverMediaAPI}${passedSys['banner']}`" alt="System Banner" class="w-full h-20"
+            <figure><img :src="`${serverMediaAPI}${passedSys['banner']}`" alt="System Banner" class="w-full h-20" v-if="passedSys['banner']"
                     style="object-fit: none;" /></figure>
             <div class="card-body">
                 <h2 class="card-title">
                     <div class="avatar">
                         <div class="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                            <img :src="`${serverMediaAPI}${passedSys['pfp']}`" />
+                            <img :src="`${serverMediaAPI}${passedSys['pfp']}`" v-if="passedSys['pfp']"/>
+                            <img src="src\assets\360_F_510888200_EentlrpDCeyf2L5FZEeSfgYaeiZ80qAU.jpg" v-else/>
                         </div>
                     </div>
                     {{ passedSys['name'] }}

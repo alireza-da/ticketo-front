@@ -1040,7 +1040,7 @@ export default {
                 </div>
 
             </div>
-            <!--            Chat-->
+            <!--Chat-->
             <div class="divider divider-horizontal"></div>
             <div class="text-center lg:text-left  grow h-full overflow-auto align-bottom">
                 <div class="relative h-full w-full">
