@@ -1041,8 +1041,9 @@ export default {
                                                 <div class="flex items-center space-x-3">
                                                     <div class="avatar">
                                                         <div class="mask mask-squircle w-12 h-12">
-                                                            <img :src="`https://ticket-backend.iran.liara.run${user.pfp}`"
-                                                                alt="Avatar Tailwind CSS Component" />
+                                                            <img :src="`https://ticket-backend.iran.liara.run${user.pfp}`" v-if="user.pfp"
+                                                                alt="Avatar" />
+                                                            <img src="../../assets/3f9470b34a8e3f526dbdb022f9f19cf7.jpg" v-else alt="Avatar" />
                                                         </div>
                                                     </div>
                                                     <div>

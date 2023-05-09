@@ -697,11 +697,6 @@ export default {
                                                     <!-- head -->
                                                     <thead>
                                                         <tr>
-                                                            <th>
-                                                                <label>
-                                                                    <input class="checkbox" type="checkbox" />
-                                                                </label>
-                                                            </th>
                                                             <th> {{ lang[selectedLang].name }}</th>
                                                             <th> {{ lang[selectedLang].role }}</th>
                                                             <th> {{ lang[selectedLang].email }}</th>
@@ -714,16 +709,13 @@ export default {
                                                     <tbody>
                                                         <!-- row 1 -->
                                                         <tr v-for="user in users" v-bind:key="user.id">
-                                                            <th>
-                                                                <label>
-                                                                    <input class="checkbox" type="checkbox" />
-                                                                </label>
-                                                            </th>
                                                             <td>
                                                                 <div class="flex items-center space-x-3">
                                                                     <div class="avatar">
                                                                         <div class="mask mask-squircle w-12 h-12">
-                                                                            <img alt="Avatar Tailwind CSS Component"
+                                                                            <img :src="`https://ticket-backend.iran.liara.run${user.pfp}`"
+                                                                                v-if="user.pfp" alt="Avatar" />
+                                                                            <img alt="Avatar" v-else
                                                                                 src="../../assets/3f9470b34a8e3f526dbdb022f9f19cf7.jpg" />
 
                                                                         </div>
@@ -923,6 +915,9 @@ export default {
                                                 <label class="btn bg-success text-black hover:(text-white)"
                                                     for="add-members-modal"> {{ lang[selectedLang].addmember }}<i
                                                         class='bx bxs-user ml-2'></i></label>
+                                                <label class="btn bg-red text-black hover:(text-white)"
+                                                    for="ticket-members-modal"> {{ lang[selectedLang].close }}<i
+                                                        class='bx bx-x ml-2'></i></label>
                                                 <input id="add-members-modal" class="modal-toggle" type="checkbox" />
                                                 <div class="modal modal-bottom lg:modal-middle w-full">
                                                     <div class="modal-box w-11/12 max-w-7xl">
