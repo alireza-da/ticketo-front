@@ -758,7 +758,7 @@ export default {
                 defMsg = res.data
                 await axios.put(`${this.messageDetailsAPI}${defMsg.id}`, {
                     content: this.sendingMessage
-                }, {headers: {Authorization: `Token ${this.token}`}})
+                }, { headers: { Authorization: `Token ${this.token}` } })
                 // post attachment
                 if (this.msgAttachment) {
                     await axios.post(`${this.attachmentListAPI}`, {
@@ -1101,7 +1101,7 @@ export default {
                                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                                     stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                             </svg>
-                                                            {{ role.name }} - {{  role.level }}
+                                                            {{ role.name }} - {{ role.level }}
                                                         </div>
 
                                                         <div class="dropdown dropdown-right m-5">
@@ -1123,7 +1123,7 @@ export default {
                                                                             stroke-width="2" d="M6 18L18 6M6 6l12 12">
                                                                         </path>
                                                                     </svg>
-                                                                    {{ role.name }} - {{  role.level }}
+                                                                    {{ role.name }} - {{ role.level }}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -1143,8 +1143,11 @@ export default {
                             </div>
                             <div class="modal-action">
                                 <label for="user-manage-modal" class="btn bg-success text-black hover:(text-white)">
-                                    {{ lang[selectedLang].save }}
-                                    Changes<i class='bx bxs-save ml-2'></i></label>
+                                    {{ lang[selectedLang].savechange }}
+                                    <i class='bx bxs-save ml-2'></i></label>
+                                <label for="user-manage-modal" class="btn bg-error text-black hover:(text-white)">
+                                    {{ lang[selectedLang].close }}
+                                    <i class='bx bx-x ml-2'></i></label>
                             </div>
                         </div>
                     </div>
@@ -1155,7 +1158,7 @@ export default {
                             <h3 class="font-bold text-lg"> {{ lang[selectedLang].systemlogs }}</h3>
                             <p class="py-4">Coming soon...</p>
                             <div class="modal-action">
-                                <label for="sys-logs-modal" class="btn bg-red text-black hover:(bg-error)">Close</label>
+                                <label for="sys-logs-modal" class="btn bg-red text-black hover:(bg-error)">{{ lang[selectedLang].close }}</label>
                             </div>
                         </div>
                     </div>
@@ -1259,6 +1262,8 @@ export default {
                                 <label for="ticket-manage-modal" class="btn bg-success text-black hover:(text-white)">
                                     {{ lang[selectedLang].save }}
                                     {{ lang[selectedLang].change }}<i class='bx bxs-save ml-2'></i></label>
+                                <label for="ticket-manage-modal" class="btn bg-error text-black hover:(text-white)">
+                                    {{ lang[selectedLang].close }}<i class='bx bx-x ml-2'></i></label>
                             </div>
                         </div>
                     </div>
@@ -1284,6 +1289,8 @@ export default {
                                 <label for="ticket-prefix-modal" class="btn bg-success text-black hover:(text-white)"
                                     @click="changeTicketPrefix()"> {{ lang[selectedLang].save }}
                                     {{ lang[selectedLang].change }}<i class='bx bxs-save ml-2'></i></label>
+                                <label for="ticket-prefix-modal" class="btn bg-error text-black hover:(text-white)">
+                                    {{ lang[selectedLang].cancel }}<i class='bx bxs-save ml-2'></i></label>
                             </div>
                         </div>
                     </div>
@@ -1396,6 +1403,10 @@ export default {
                                                             @click="updateCategory(cat)"> {{ lang[selectedLang].save }}
                                                             {{ lang[selectedLang].change }}<i
                                                                 class='bx bxs-save ml-2'></i></label>
+                                                        <label :for="`edit-category-modal${cat.id}`"
+                                                            class="btn bg-success text-black hover:(text-white)"> {{
+                                                                lang[selectedLang].cancel }}<i
+                                                                class='bx bxs-save ml-2'></i></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1431,8 +1442,7 @@ export default {
                                                 <span class="label-text"> {{ lang[selectedLang].customfields }}</span>
                                             </label>
                                             <label class="input-group">
-                                                <input type="text" v-model="customFields"
-                                                    placeholder="SteamHex, DiscordID"
+                                                <input type="text" v-model="customFields" placeholder="SteamHex, DiscordID"
                                                     class="input input-bordered w-100" />
                                             </label>
                                             <label class="label">
@@ -1457,11 +1467,16 @@ export default {
                                                 class="btn bg-success text-black hover:(text-white)"
                                                 @click="createCategory()"> {{ lang[selectedLang].save }}
                                                 {{ lang[selectedLang].change }}<i class='bx bxs-save ml-2'></i></label>
+                                            <label for="create-categories-modal"
+                                                class="btn bg-success text-black hover:(text-white)">
+                                                {{ lang[selectedLang].cancel }}<i class='bx bxs-save ml-2'></i></label>
                                         </div>
                                     </div>
                                 </div>
                                 <label for="categories-modal" class="btn bg-success text-black hover:(text-white)">
                                     {{ lang[selectedLang].savechange }}<i class='bx bxs-save ml-2'></i></label>
+                                <label for="categories-modal" class="btn bg-error text-black hover:(text-white)">
+                                    {{ lang[selectedLang].close }}<i class='bx bx-x ml-2'></i></label>
                             </div>
                         </div>
                     </div>
@@ -1719,10 +1734,14 @@ export default {
 
                                                             <div class="modal-action">
                                                                 <label :for="`edit-role-modal${role.id}`"
-                                                                    @click="updateRole(role)"
-                                                                    class="btn bg-success text-black hover:(text-white)">
+                                                                    @click="updateRole(role)" class="btn bg-success text-black hover:(text-white)">
                                                                     {{ lang[selectedLang].save }}
-                                                                    Changes<i class='bx bxs-save ml-2'></i></label>
+                                                                    <i class='bx bxs-save ml-2'></i>
+                                                                </label>
+                                                                <label :for="`edit-role-modal${role.id}`" class="btn bg-red text-black hover:(text-white)">
+                                                                    {{ lang[selectedLang].close }}
+                                                                    <i class='bx bx-x ml-2'></i>
+                                                                </label>
                                                             </div>
 
                                                         </div>
@@ -1740,6 +1759,9 @@ export default {
                                 <label for="role-manage-modal" class="btn bg-success text-black hover:(text-white)">
                                     {{ lang[selectedLang].savechange }}
                                     <i class='bx bxs-save ml-2'></i></label>
+                                <label for="role-manage-modal" class="btn bg-error text-black hover:(text-white)">
+                                    {{ lang[selectedLang].close }}
+                                    <i class='bx bx-x ml-2'></i></label>
                             </div>
                         </div>
                     </div>
@@ -1857,6 +1879,9 @@ export default {
                                 <label for="add-role-modal" class="btn bg-success text-black hover:(text-white)"
                                     @click="createRole"> {{ lang[selectedLang].savechange }}<i
                                         class='bx bxs-save ml-2'></i></label>
+                                <label for="add-role-modal" class="btn bg-error text-black hover:(text-white)"
+                                    @click="createRole"> {{ lang[selectedLang].close }}<i
+                                        class='bx bx-x ml-2'></i></label>
                             </div>
                         </div>
                     </div>
@@ -1867,7 +1892,7 @@ export default {
                             <h3 class="font-bold text-lg"> {{ lang[selectedLang].systemlogs }}</h3>
                             <p class="py-4">Coming soon...</p>
                             <div class="modal-action">
-                                <label for="sys-logs-modal" class="btn bg-red text-black hover:(bg-error)">Close</label>
+                                <label for="sys-logs-modal" class="btn bg-red text-black hover:(bg-error)">{{ lang[selectedLang].close }}</label>
                             </div>
                         </div>
                     </div>
