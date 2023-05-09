@@ -23,6 +23,7 @@ export default {
             redirectUri: 'https://ticket.sunrp.ir/auth/discord',
             sysListAPI: "https://ticket-backend.iran.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
             createUserAPI: 'https://ticket-backend.iran.liara.run/api/users/create/',
+            roleListAPI: "https://ticket-backend.iran.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
         }
 
     },
