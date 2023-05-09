@@ -121,5 +121,6 @@ export const en = {
     'open': 'Open',
     'defaultMessage': 'Default Message',
     'popout': 'Pop Out',
-    'closeticketwarnmsg': "Are you sure you want to close ticket? You won't be able to reopen a closed ticket!"
+    'closeticketwarnmsg': "Are you sure you want to close ticket? You won't be able to reopen a closed ticket!",
+    'loginviadiscord': "Signup via Discord"
 }

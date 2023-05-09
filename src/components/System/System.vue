@@ -923,7 +923,7 @@ export default {
                     <div class="avatar">
                         <div class="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                             <img :src="`${serverMediaAPI}${passedSys['pfp']}`" v-if="passedSys['pfp']"/>
-                            <img src="src\assets\360_F_510888200_EentlrpDCeyf2L5FZEeSfgYaeiZ80qAU.jpg" v-else/>
+                            <img src="../../assets/360_F_510888200_EentlrpDCeyf2L5FZEeSfgYaeiZ80qAU.jpg" v-else/>
                         </div>
                     </div>
                     {{ passedSys['name'] }}
