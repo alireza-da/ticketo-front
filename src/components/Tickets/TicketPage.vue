@@ -605,7 +605,7 @@ export default {
                 <div class="card-body min-h-full ">
                     <div class="avatar mb-5">
                         <div class="w-24 rounded-full">
-                            <img src="../../assets/Icons/user_icon.png" v-if="userPfp.length == 0" />
+                            <img src="../../assets/Icons/user_icon.png" v-if="!userPfp" />
                             <img :src="`https://ticket-backend.iran.liara.run${userPfp}`"  v-else/>
                         </div>
                         <div class="grid place-self-end text-xl" style="margin-left: 10px">

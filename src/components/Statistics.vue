@@ -154,24 +154,15 @@ export default {
             <div class="stat">
                 <div class="stat-title">{{lang[selectedLang].totaltickets}}</div>
                 <div class="stat-value">{{ getAllTicketsCount() }}</div>
-                <div class="stat-actions">
-                    <button class="btn btn-sm btn-success"> {{lang[selectedLang].createyourownsystem}}</button>
-                </div>
             </div>
 
             <div class="stat">
                 <div class="stat-title">{{lang[selectedLang].yourtickets}}</div>
                 <div class="stat-value">{{ getTicketsNumber() }}</div>
-                <div class="stat-actions">
-                    <button class="btn btn-sm">Create More</button>
-                </div>
             </div>
             <div class="stat">
                 <div class="stat-title">{{lang[selectedLang].participatedtickets}}</div>
-                <div class="stat-value">{{ getUserTicketsNumber() - 10 }}</div>
-                <div class="stat-actions">
-                    <button class="btn btn-sm">Check Them</button>
-                </div>
+                <div class="stat-value">{{ getUserTicketsNumber() }}</div>
             </div>
 
         </div>
