@@ -155,7 +155,7 @@ export default {
                 this.$notify({
                     group: "foo",
                     title: "Success",
-                    text: "Your guest profile has been created successfuly"
+                    text: "Your discord profile has been fetched successfuly"
                 }, 2000) // 2s
             }).catch(error => {
                 this.$notify({
@@ -217,7 +217,7 @@ export default {
                             <router-link class="label-text-alt link link-hover" to="/signup">Sign up</router-link>
                         </label>
                         <div class="divider">OR</div>
-                        <button class="btn w-full" @click="loginasguest">{{ lang[selectedLang].loginviadiscord }}<i class='bx bxl-discord-alt ml-2'></i></button>
+                        <a class="btn w-full" :href='discordOauth2API'>{{ lang[selectedLang].loginviadiscord }}<i class='bx bxl-discord-alt ml-2'></i></a>
                         <div class="divider">OR</div>
                         <div class="flex justify-around" style="padding-top: 10px">
                             <!-- <GoogleLogin :callback="googleLogin" prompt>
