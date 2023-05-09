@@ -181,9 +181,10 @@ export default {
             )
             return result
         },
-        findHighestSysRole(uid) {
+        async findHighestSysRole(uid) {
 
-            var roles = this.findRolesOfAUser(uid)
+            var roles = await this.findRolesOfAUser(uid)
+            console.log(roles);
             if (roles === undefined) {
                 return {}
             }
@@ -197,6 +198,10 @@ export default {
             })
             return result
         },
+        refreshChat(){
+            // should implement with push notifications
+            setInterval(this.refreshMessages, 20000)
+        },
         async fetchUserHR() {
             var hr = this.findHighestRole(this.userData.id)
             this.clientCreateTicket = hr.create_ticket
@@ -208,7 +213,7 @@ export default {
             this.clientUpdateTicket = hr.update_ticket
             this.clientUploadMedia = hr.upload_media
             this.clientWriteMessage = hr.write_messages
-            hr = this.findHighestSysRole(this.userData.id)
+            hr = await this.findHighestSysRole(this.userData.id)
             console.log(hr)
             this.clientManageRoles = hr.manage_role
             this.clientManageMembers = hr.manage_members
@@ -287,6 +292,35 @@ export default {
                 }
             }
             this.doneFetchingChat = true
+        },
+        async refreshMessages() {
+            this.messageList = []
+            this.finalMessageList = []
+            
+            await axios.get(`${this.ticketMessagesAPI}${this.$props.ticket.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
+                this.messageList = res.data
+            })
+
+            for (let msg of this.messageList) {
+                if (msg.user_id == this.userData.id) {
+                    this.finalMessageList.push({
+                        sender: "me",
+                        message: msg
+                    })
+                } else {
+                    if (msg.user_id)
+                        this.finalMessageList.push({
+                            sender: this.getUserById(msg.user_id).name,
+                            message: msg
+                        })
+                    else
+                        this.finalMessageList.push({
+                            sender: "System",
+                            message: msg
+                        })
+                }
+            }
+            
         },
         async getUser(msg) {
             let result
@@ -531,6 +565,7 @@ export default {
         await this.fetchMessage()
         await this.fetchUserHR()
         await this.fetchPms()
+        this.refreshChat()
     },
     data() {
         return {
@@ -562,6 +597,7 @@ export default {
             ticketDetailsAPI: 'https://ticket-backend.iran.liara.run/api/tickets/details/', // tid
             referralLinkURL: 'https://ticket.sunrp.ir/tickets/',
             predefinedMessageSystemAPI: 'https://ticket-backend.iran.liara.run/api/system/predefinedmsg/', // sysid
+            userRolesAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
             // ticket role data
             roleReadMessage: false,
             roleWriteMessage: false,
