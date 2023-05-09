@@ -37,19 +37,28 @@ export default {
             this.doneFetchingTickets = true
         },
         async systems(newVal) {
-            this.systemList = newVal
-            this.fetchCategories()
+            if (this.systemList !== newVal) {
+
+                this.systemList = newVal
+                this.categories = []
+                await this.fetchCategories()
+            }
+
+
+
         }
     },
     async created() {
         this.token = localStorage.getItem('token')
         this.doneFetchingTickets = false
         this.ticketList = []
+        this.categories = []
+        this.systemList = this.$props.systems
         for (const t of this.$props.passedTicketList) {
             if (!t.is_deleted && await this.isVerifiedCat(t) && t.is_closed === this.is_closed) {
                 this.ticketList.push(t)
                 await this.fetchSys(t)
-                if(!this.clientRoles[t.sys_id])
+                if (!this.clientRoles[t.sys_id])
                     await this.fetchClientRolesOfSystem(t.sys_id)
             }
         }
@@ -85,17 +94,23 @@ export default {
             this.ticketList.sort(comparer)
         },
         async fetchCategories() {
-            this.categories = []
-            for (const sys of this.systemList) {
-                await axios.get(`${this.categoryDetailsAPI}${sys.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
-                    sys.categories = res.data
-                    for (const cat of sys.categories) {
-                        this.categories.push(cat)
-                    }
-                })
+            if (this.semaphore === 0) {
+                this.semaphore ++
+                this.categories = []
+                for (const sys of this.systemList) {
+                    await axios.get(`${this.categoryDetailsAPI}${sys.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
+                        sys.categories = res.data
+                        for (const cat of sys.categories) {
 
+                            this.categories.push(cat)
+
+                        }
+                    })
+                }
+                this.semaphore = 0
             }
         },
+
         async filterByCategory(cat) {
             this.selectedCat = cat
             this.ticketList = []
@@ -172,7 +187,7 @@ export default {
             // check if owner of system
             if (this.clientRoles[t.sys_id]) {
                 for (const r of this.clientRoles[t.sys_id]) {
-                    if (r.owner){
+                    if (r.owner) {
                         return true
                     }
                 }
@@ -270,6 +285,7 @@ export default {
     data() {
         return {
             clientRoles: {},
+            semaphore: 0,
             ticketList: [],
             systemList: [],
             token: null,
