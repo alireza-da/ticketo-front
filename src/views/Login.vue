@@ -217,7 +217,7 @@ export default {
                             <router-link class="label-text-alt link link-hover" to="/signup">Sign up</router-link>
                         </label>
                         <div class="divider">OR</div>
-                        <button class="btn w-full" @click="loginasguest">{{ lang[selectedLang].logingasguest }}</button>
+                        <button class="btn w-full" @click="loginasguest">{{ lang[selectedLang].loginviadiscord }}<i class='bx bxl-discord-alt ml-2'></i></button>
                         <div class="divider">OR</div>
                         <div class="flex justify-around" style="padding-top: 10px">
                             <!-- <GoogleLogin :callback="googleLogin" prompt>

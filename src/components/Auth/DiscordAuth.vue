@@ -20,22 +20,15 @@ export default {
             discordTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/discord/',
             discordOfficialEndpointAPI: 'https://discord.com/api/v10/',
             discordTokenEndpoint: 'oauth2/token',
-            redirectUri: 'https://ticket.sunrp.ir/auth/discord'
+            redirectUri: 'https://ticket.sunrp.ir/auth/discord',
+            sysListAPI: "https://ticket-backend.iran.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
+            createUserAPI: 'https://ticket-backend.iran.liara.run/api/users/create/',
         }
 
     },
     methods: {
         async login() {
             const code = this.code
-            console.log(new URLSearchParams({
-                client_id: this.clientID,
-                client_secret: this.client_secret,
-                code: this.code,
-                grant_type: 'authorization_code',
-                redirect_uri: this.redirectUri,
-                scope: 'identify'
-
-            }).toString());
             await axios.post(`${this.discordOfficialEndpointAPI}${this.discordTokenEndpoint}`, new URLSearchParams({
                 client_id: this.clientID,
                 client_secret: this.clientSecret,
@@ -44,7 +37,6 @@ export default {
                 redirect_uri: this.redirectUri,
                 scope: 'identify',
             }).toString(), { headers: { "Content-Type": 'application/x-www-form-urlencoded' } }).then(async res => {
-                console.log(res.data);
                 await axios.get('https://discord.com/api/users/@me', {
                     headers: {
                         Authorization: `${res.data.token_type} ${res.data.access_token}`,
@@ -65,14 +57,51 @@ export default {
                     }).catch(err => {
                         if (err.response.status === 404) {
                             this.$notify({
-                                group: 'error',
-                                title: 'Error',
-                                text: 'User assigned with this discord does not exist'
+                                group: 'foo',
+                                title: 'Info',
+                                text: 'Creating account'
+                            })
+                            
+                            // sign up with discord id
+                            axios.post(`${this.createUserAPI}`, {
+                                "name": this.discordUsername,
+                                "discord_id": this.discordId
+                            }, {
+                                headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data', },
+                            }).then((response) => {
+                                axios.post('https://ticket-backend.iran.liara.run/api/ata/discord/', {
+                                    discord_id: this.discordId
+                                }, {
+                                    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                                }).then(async (response) => {
+                                    localStorage.setItem('token', response.data.token)
+                                    this.token = response.data.token
+                                    await this.fetchSystems()
+                                    await this.createGuestRole(response.data.user_id)
+                                    this.$router.push('/dashboard')
+                                })
+                                this.$notify({
+                                    group: "foo",
+                                    title: "Success",
+                                    text: "Your Discord profile has been created successfuly"
+                                }, 2000) // 2s
+                            }).catch(error => {
+                                this.$notify({
+                                    group: "error",
+                                    title: "Error",
+                                    text: "Authentication failed. Check username & password"
+                                }, 2000) // 2s
                             })
                         }
                     })
                 })
             })
+        },
+        async fetchSystems() {
+            await axios.get(`${this.sysListAPI}`, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
+                this.systems = res.data
+            })
+            this.$emit('fetch-system')
         },
         toHex(str) {
             var result = '';
@@ -80,7 +109,33 @@ export default {
                 result += str.charCodeAt(i).toString(16);
             }
             return result;
-        }
+        },
+        async createGuestRole(uid) {
+            for (const system of this.systems) {
+                await axios.post(`${this.roleListAPI}`, {
+                    "color": "#000000",
+                    "create_ticket": true,
+                    "delete_messages": false,
+                    "delete_ticket": false,
+                    "level": 0,
+                    "manage_members": false,
+                    "manage_role": false,
+                    "manage_system": false,
+                    "name": "Guest",
+                    "owner": false,
+                    "read_history": true,
+                    "read_messages": true,
+                    "sys_id": system.id,
+                    "update_ticket": false,
+                    "upload_media": true,
+                    "user_id": uid,
+                    "write_messages": true
+                }, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
+
+                })
+            }
+
+        },
     }
 }
 </script>
