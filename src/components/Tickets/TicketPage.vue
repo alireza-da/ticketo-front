@@ -111,7 +111,7 @@ export default {
                 await this.fetchTicketMembers()
             })
         },
-        async updateTicketRole(tr) {            
+        async updateTicketRole(tr) {
             await axios.put(`${this.ticketRolesMainDetailsAPI}${tr.id}`, {
                 sys_id: tr.sys_id,
                 name: tr.name,
@@ -196,16 +196,33 @@ export default {
             })
             return result
         },
-        refreshChat(){
+        async refreshChat() {
             // should implement with push notifications
             // setInterval(this.refreshMessages, 200000)
+            let currentDate = new Date()
+            if (!this.refreshChatCd) {
+                this.refreshChatCd = currentDate.getTime()
+                await this.refreshMessages()
+                return
+            }
+            let diff = (currentDate.getTime() - this.refreshChatCd) / 60 / 60 
+            if (diff < 30) {
+                this.$notify({
+                    group: 'error',
+                    title: 'Refresh Cooldown',
+                    text: `Wait for ${(30 - diff).toFixed(2)} seconds`
+                })
+                return
+            }
+            this.refreshChatCd = currentDate.getTime()
+            await this.refreshMessages()
         },
         async fetchUserHR() {
             var hr = this.findHighestRole(this.userData.id)
             this.clientCreateTicket = hr.create_ticket
             this.clientDeleteMessage = hr.delete_messages
             this.clientDeleteTicket = hr.delete_ticket
-           
+
             this.clientReadHistory = hr.read_history
             this.clientReadMessage = hr.read_messages
             this.clientUpdateTicket = hr.update_ticket
@@ -293,7 +310,7 @@ export default {
         async refreshMessages() {
             this.messageList = []
             this.finalMessageList = []
-            
+
             await axios.get(`${this.ticketMessagesAPI}${this.$props.ticket.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
                 this.messageList = res.data
             })
@@ -317,7 +334,7 @@ export default {
                         })
                 }
             }
-            
+
         },
         async getUser(msg) {
             let result
@@ -401,8 +418,8 @@ export default {
             }
             return 'other'
         },
-        async sendNewMessageByEnter(){
-            if(event.key === "Enter"){
+        async sendNewMessageByEnter() {
+            if (event.key === "Enter") {
                 await this.sendNewMessage()
             }
         },
@@ -566,7 +583,6 @@ export default {
         await this.fetchMessage()
         await this.fetchUserHR()
         await this.fetchPms()
-        this.refreshChat()
     },
     data() {
         return {
@@ -638,6 +654,7 @@ export default {
             audioData: null,
             // loading states
             doneFetchingChat: false,
+            refreshChatCd: null,
         }
 
     }
@@ -656,7 +673,7 @@ export default {
                     <div class="avatar mb-5">
                         <div class="w-24 rounded-full">
                             <img src="../../assets/Icons/user_icon.png" v-if="!userPfp" />
-                            <img :src="`https://ticket-backend.iran.liara.run${userPfp}`"  v-else/>
+                            <img :src="`https://ticket-backend.iran.liara.run${userPfp}`" v-else />
                         </div>
                         <div class="grid place-self-end text-xl" style="margin-left: 10px">
                             <h3 class="" style="margin-top: 30%">{{ username }}</h3>
@@ -1082,8 +1099,10 @@ export default {
                                             <h3 class="font-bold text-lg">Warning</h3>
                                             <p class="py-4">{{ lang[selectedLang].closeticketwarnmsg }}</p>
                                             <div class="modal-action">
-                                                <label for="close-ticket-modal" class="btn btn-success hover:()" @click="closeTicket">{{lang[selectedLang].close}}</label>
-                                                <label for="close-ticket-modal" class="btn btn-error">{{lang[selectedLang].cancel}}</label>
+                                                <label for="close-ticket-modal" class="btn btn-success hover:()"
+                                                    @click="closeTicket">{{ lang[selectedLang].close }}</label>
+                                                <label for="close-ticket-modal"
+                                                    class="btn btn-error">{{ lang[selectedLang].cancel }}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -1119,6 +1138,9 @@ export default {
 
                 <div v-if="clientWriteMessage && ticketStatus !== 'Closed'"
                     class="w-full flex max-h-1/5 object-bottom inset-x-0 bottom-0 absolute ">
+                    <button class="btn btn-circle btn-outline btn-accent" @click="refreshChat">
+                        <i class='bx bx-refresh lg text-xl'></i>
+                    </button>
                     <a v-if="clientUploadMedia" class="btn btn-circle btn-outline btn-accent" for="uploadFile"
                         href="https://uupload.ir/" target="_blank">
                         <i class='bx bx-cloud-upload lg text-xl'> </i>
@@ -1195,7 +1217,7 @@ export default {
                     <input class="mr-1" id="uploadFile" style="width: 0px ; height:0px" type="file"
                         v-on:change="setMessageAttachment">
                     <input v-model="sendingMessage" class="input input-bordered grow"
-                        :placeholder="lang[selectedLang].addyourmessage" type="text" @keypress="sendNewMessageByEnter"/>
+                        :placeholder="lang[selectedLang].addyourmessage" type="text" @keypress="sendNewMessageByEnter" />
                     <button class="btn btn-outline btn-success" @click="sendNewMessage"> {{ lang[selectedLang].send }} <i
                             class='bx bxs-send' style="padding-left: 3px "></i>
                     </button>

@@ -131,8 +131,30 @@ export default {
         async fetchMediaURL() {
             var urls = this.detectURLs(this.lastMessage)
             for (const url of urls) {
-                this.externalPhotoList.push(url)
+                let splited = url.split('/')
+                let filename = splited.pop()
+                let ft = this.findFileType(filename)
+                if(ft === 'picture'){
+                    this.externalPhotoList.push(url)
+                }
+                if(ft === 'video'){
+                    this.externalVideoList.push(url)
+                }
             }
+        },
+        findFileType(filename) {
+            var ext = filename.split('.').pop();
+            ext = ext.toLowerCase()
+            if (ext === 'jpg' || ext === 'png') {
+                return 'picture'
+            }
+            if (ext === 'mp4' || ext === 'mkv' || ext === 'webm' || ext === 'mov' || ext === 'wmv' || ext === 'flv' || ext === 'avi' || ext === 'gif') {
+                return 'video'
+            }
+            if (ext === 'mp3' || ext === 'wma' || ext === 'm4a') {
+                return 'audio'
+            }
+            return 'other'
         },
         async fetchAttachment() {
 
