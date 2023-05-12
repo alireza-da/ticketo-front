@@ -14,6 +14,10 @@ import Help from '../views/Help.vue'
 const routes = [
   {
     path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/landing',
     name: 'landing',
     component: Landing
   },

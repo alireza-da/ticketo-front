@@ -140,6 +140,9 @@ export default {
         },
         changeLang(lang) {
             this.$emit('change-lang', lang)
+        },
+        changeTheme(theme) {
+            this.$emit('change-theme', theme)
         }
     },
     watch: {
@@ -163,30 +166,30 @@ export default {
 
 <template flex>
     <div class="h-full w-full">
-        <Navbar v-on:select-tab="selectTab" v-on:change-lang="changeLang" :lang="lang" :selectedLang="selectedLang">
+        <Navbar v-on:select-tab="selectTab" v-on:change-lang="changeLang" v-on:change-theme="changeTheme" :lang="lang" :selectedLang="selectedLang">
         </Navbar>
         <div class="dashboard flex flex-col p-3 space-x-1" style="width: 100%; height: 93%; font-family: BalooBhaijaan">
             <div style="display: inline-block;" class="sidebar h-20 w-full mb-2">
                 <ul class="menu menu-horizontal lg:menu-horizontal bg-base-100 w-full h-20 p-2 rounded-box">
-                    <li v-bind:class="{ 'bg-accent': selectedIndex == 0 }">
+                    <li v-bind:class="{ 'bg-primary': selectedIndex == 0 }" class="">
                         <a @click="exitRestrictedMode(0); selectTab(0)">
                             <i class="bx bx-support"></i>
                             {{lang[selectedLang].systems}}
                         </a>
                     </li>
-                    <li v-bind:class=" { 'bg-accent': selectedIndex == 1 } ">
+                    <li v-bind:class=" { 'bg-primary': selectedIndex == 1 } ">
                         <a @click=" exitRestrictedMode(1); selectTab(1) ">
                             <i class="bx bx-envelope"></i>
                             {{lang[selectedLang].tickets}}
                         </a>
                     </li>
-                    <li v-bind:class=" { 'bg-accent': selectedIndex == 2 } " v-if="userData && userData.is_staff">
+                    <li v-bind:class=" { 'bg-primary': selectedIndex == 2 } " v-if="userData && userData.is_staff">
                         <a @click=" exitRestrictedMode(2); selectTab(2) ">
                             <i class="bx bx-stats"></i>
                             {{lang[selectedLang].statistics}}
                         </a>
                     </li>
-                    <li v-bind:class=" { 'bg-accent': selectedIndex == 3 } ">
+                    <li v-bind:class=" { 'bg-primary': selectedIndex == 3 } ">
                         <a @click=" exitRestrictedMode(3); selectTab(3) ">
                             <i class='bx bxs-user-circle'></i>
                             {{lang[selectedLang].profile}}

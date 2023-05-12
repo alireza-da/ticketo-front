@@ -9,13 +9,17 @@ export default {
         "fa": fa,
         "en": en
       },
-      selectedLang: 'en'
+      selectedLang: 'en',
+      theme: 'dark',
     }
 
   },
   methods: {
     changeLang(lang){
       this.selectedLang = lang
+    },
+    changeTheme(theme){
+      this.theme = theme
     }
   }
 }
@@ -104,7 +108,7 @@ export default {
       </div>
     </div>
   </NotificationGroup>
-  <router-view class="z-0" :lang="lang" :selectedLang="selectedLang" v-on:change-lang="changeLang"/>
+  <router-view class="z-0" :lang="lang" :selectedLang="selectedLang" v-on:change-lang="changeLang" v-on:change-theme="changeTheme" :data-theme="theme"/>
 </template>
 
 <style>

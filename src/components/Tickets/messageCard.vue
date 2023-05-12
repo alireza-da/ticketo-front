@@ -20,9 +20,8 @@
             
         </a> -->
         <div class="chat-header ">
-
             {{ message.sender }}
-            <time class="text-xs opacity-50">12:45</time>
+            <time class="text-xs opacity-50">{{formatDate(message.message.created_at)}}</time>
         </div>
 
         <div :class="chatColor" class="chat-bubble"
@@ -35,19 +34,24 @@
 
             <a class="hover:cursor-pointer" v-for="photo in photoList" v-bind:key="photo" :href="backendBaseAPI + photo"
                 target="_blank">
-                <img :src="backendBaseAPI + photo" class="box-border h-64 w-64 border-4 border-gray" />
+                <img :src="backendBaseAPI + photo" class="box-border h-64 w-64 border-4 border-gray" v-on:load="this.$emit('scroll-to-bottom-chat')"
+                v-on:error="this.$emit('scroll-to-bottom-chat')"/>
             </a>
             <a class="hover:cursor-pointer" v-for="video in videoList" v-bind:key="video" :href="backendBaseAPI + video"
                 target="_blank">
-                <video :src="backendBaseAPI + video" class="box-border h-64 w-64" controls></video>
+                <video :src="backendBaseAPI + video" class="box-border h-64 w-64" v-on:load="this.$emit('scroll-to-bottom-chat')"
+                 v-on:error="this.$emit('scroll-to-bottom-chat')" controls></video>
             </a>
             <a class="hover:cursor-pointer link" v-for="photo in externalPhotoList" v-bind:key="photo"
                 :href="photo" target="_blank">
-                <img :src="photo" class="box-border h-64 w-64 border-4 border-gray" />
+                <img :src="photo" class="box-border h-64 w-64 border-4 border-gray" v-on:load="this.$emit('scroll-to-bottom-chat')"
+                 v-on:error="this.$emit('scroll-to-bottom-chat')"/>
             </a>
-            <a class="hover:cursor-pointer link" v-for="video in externalVideoList" v-bind:key="video"
+            <a class="hover:cursor-pointer link" v-for="video in externalVideoList" v-bind:key="video" 
                 :href="video" target="_blank">
-                <video :src="video" class="box-border h-64 w-64" controls></video>
+                <video :src="video" class="box-border h-64 w-64"  
+                v-on:error="this.$emit('scroll-to-bottom-chat')"
+                v-on:load="this.$emit('scroll-to-bottom-chat')" controls></video>
             </a>
             <a class="hover:cursor-pointer" v-for="file in fileList" v-bind:key="file" :href="backendBaseAPI + file"
                 target="_blank">
@@ -88,14 +92,13 @@ export default {
 
     },
     mounted() {
-
-
+        
     },
     data() {
         return {
             token: null,
             chatColor: this.message.sender === 'me' ? 'chat-bubble-info' : 'chat-bubble-primary',
-            showOption: this.message.sender === 'me' ? true : false,
+            showOption: this.message.sender === 'me' || this.highestRole.update_ticket || this.highestRole.manage_system ? true : false,
             attachmentAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/attachment/',
             backendBaseAPI: 'https://ticket-backend.iran.liara.run',
             photoList: [],
@@ -113,12 +116,7 @@ export default {
         this.token = localStorage.getItem('token')
 
         await this.fetchAttachment()
-        await this.fetchMediaURL()
-        // console.log('photo list', this.photoList)
-        // console.log('video list', this.videoList)
-        // console.log('file list', this.fileList)
-        // console.log('audio list', this.audioList)
-
+        this.fetchMediaURL()
     },
     methods: {
 
@@ -128,7 +126,7 @@ export default {
                 return message.match(urlRegex)
             }
         },
-        async fetchMediaURL() {
+        fetchMediaURL() {
             var urls = this.detectURLs(this.lastMessage)
             for (const url of urls) {
                 let splited = url.split('/')
@@ -141,6 +139,7 @@ export default {
                     this.externalVideoList.push(url)
                 }
             }
+            this.$emit("scroll-to-bottom-chat")
         },
         findFileType(filename) {
             var ext = filename.split('.').pop();
@@ -182,6 +181,21 @@ export default {
                 })
 
 
+        },
+        formatDate(date) {
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var date = new Date(date)
+            var currentDate = new Date()
+            const diffTime = Math.abs(currentDate - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+            if(diffDays < 1){
+                return `Today ${date.getHours()}:${date.getMinutes()}`
+            }
+            else if(diffDays == 1){
+                return `Yesterday ${date.getHours()}:${date.getMinutes()}`
+            }
+            return `${date.toLocaleString("en-US", options)} ${date.getHours()}:${date.getMinutes()}`
         },
         async deleteMessage(mid) {
             this.$emit('deleteMessage', this.message.message.id)

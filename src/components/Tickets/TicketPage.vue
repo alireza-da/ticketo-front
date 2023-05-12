@@ -17,7 +17,7 @@ export default {
             default: null
         },
         lang: Object,
-        selectedLang: String
+        selectedLang: String,
     },
     methods: {
         searchTable(tableId, inputId) {
@@ -203,19 +203,28 @@ export default {
             if (!this.refreshChatCd) {
                 this.refreshChatCd = currentDate.getTime()
                 await this.refreshMessages()
+                this.scrollToBottomChat()
                 return
             }
-            let diff = (currentDate.getTime() - this.refreshChatCd) / 60 / 60 
+            let diff = (currentDate.getTime() - this.refreshChatCd) / 60 / 60
             if (diff < 30) {
                 this.$notify({
                     group: 'error',
                     title: 'Refresh Cooldown',
                     text: `Wait for ${(30 - diff).toFixed(2)} seconds`
                 })
+                this.scrollToBottomChat()
                 return
             }
             this.refreshChatCd = currentDate.getTime()
             await this.refreshMessages()
+            this.scrollToBottomChat()
+
+        },
+        scrollToBottomChat() {
+            var el = this.$refs.chatlist
+            if (el)
+                el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
         },
         async fetchUserHR() {
             var hr = this.findHighestRole(this.userData.id)
@@ -245,6 +254,29 @@ export default {
                     text: 'Ticket has been updated'
                 })
                 this.ticketStatus = "Closed"
+            })
+
+        },
+        async fetchTicket(){
+            await axios.get(`${this.ticketRolesDetails}${this.$props.ticket.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
+
+            })
+        },
+        async changeCat(cat) {
+            
+            await axios.put(`${this.ticketDetailsAPI}${this.$props.ticket.id}`, {
+                sys_id: this.$props.ticket.sys_id,
+                name: this.$props.ticket.name,
+                category: cat.id
+            }, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
+                this.$notify({
+                    group: 'foo',
+                    title: 'Succes',
+                    text: 'Ticket has been updated'
+                })
+                this.ticketCategory = cat.name
+                await this.refreshMessages()
+                this.$emit('update-tickets')
             })
 
         },
@@ -306,6 +338,8 @@ export default {
                 }
             }
             this.doneFetchingChat = true
+            this.scrollToBottomChat()
+
         },
         async refreshMessages() {
             this.messageList = []
@@ -334,7 +368,7 @@ export default {
                         })
                 }
             }
-
+            this.scrollToBottomChat()
         },
         async getUser(msg) {
             let result
@@ -352,6 +386,11 @@ export default {
                     this.system = s
                 }
             }
+        },
+        async fetchCats(){
+            await axios.get(`${this.sysCategoryDetailsAPI}${this.system.id}`, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
+                this.categories = res.data
+            })
         },
         async deleteMessage(mid) {
 
@@ -452,6 +491,7 @@ export default {
                 })
             }
             await this.fetchMessage()
+            await this.scrollToBottomChat()
             this.sendingMessage = null
             this.msgAttachment = null
 
@@ -578,11 +618,15 @@ export default {
         await this.fetchUserData()
         this.fetchTicketData()
         await this.fetchSys()
+        await this.fetchCats()
         await this.fetchTicketMembers()
         await this.fetchSysUsers()
         await this.fetchMessage()
         await this.fetchUserHR()
         await this.fetchPms()
+    },
+    mounted() {
+        // this.scrollToBottomChat()
     },
     data() {
         return {
@@ -603,6 +647,7 @@ export default {
             predefinedMessages: [],
             token: null,
             system: null,
+            categories: [],
             // APIs
             ticketRolesDetails: 'https://ticket-backend.iran.liara.run/api/tickets/roles/details/', // tid
             userDetailsAPI: 'https://ticket-backend.iran.liara.run/api/users/details/', // uid
@@ -615,6 +660,7 @@ export default {
             referralLinkURL: 'https://ticket.sunrp.ir/tickets/',
             predefinedMessageSystemAPI: 'https://ticket-backend.iran.liara.run/api/system/predefinedmsg/', // sysid
             userRolesAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
+            sysCategoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // sid
             // ticket role data
             roleReadMessage: false,
             roleWriteMessage: false,
@@ -694,7 +740,16 @@ export default {
                                 <div class="grid grid-cols-2">
 
                                     <h3 class="text-1xl "> {{ lang[selectedLang].category }} : </h3>
-                                    <p>{{ ticketCategory }}</p>
+                                    <div class="dropdown">
+                                        <a tabindex="0" class="">{{ ticketCategory }}<i class='bx bx-chevron-down ml-1'></i></a>
+                                        <ul tabindex="0"
+                                            class="dropdown-content menu p-2 shadow bg-dark rounded-box w-52">
+                                            <li v-for="cat in categories" v-bind:key="cat.id" class="flex flex-row"
+                                            :style="{'color': cat.color}"><a @click="changeCat(cat)"><i class='bx bxs-circle'></i><p class="text-white">{{cat.name}}</p></a></li>
+                                        </ul>
+                                        
+                                    </div>
+
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <h3 class="text-1xl "> {{ lang[selectedLang].system }} : </h3>
@@ -1101,8 +1156,8 @@ export default {
                                             <div class="modal-action">
                                                 <label for="close-ticket-modal" class="btn btn-success hover:()"
                                                     @click="closeTicket">{{ lang[selectedLang].close }}</label>
-                                                <label for="close-ticket-modal"
-                                                    class="btn btn-error">{{ lang[selectedLang].cancel }}</label>
+                                                <label for="close-ticket-modal" class="btn btn-error">{{
+                                                    lang[selectedLang].cancel }}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -1126,11 +1181,12 @@ export default {
             <div class="text-center lg:text-left  grow h-full overflow-auto align-bottom">
                 <div class="relative h-full w-full">
                     <div v-if="(clientReadHistory || clientReadMessage)"
-                        class="overflow-y-scroll max-h-4.7/5  w-full absolute  bottom-15">
+                        class="overflow-y-scroll max-h-4.7/5  w-full absolute  bottom-15 scroll-smooth" ref="chatlist">
 
                         <messagecard v-for="message in finalMessageList" v-bind:key="message.id" :message="message"
-                            :userData="getUserById(message.message.user_id)" @deleteMessage="deleteMessage"
-                            @editMessage="editMessage" :highestRole="findHighestRole(userData.id)">
+                            v-on:scroll-to-bottom-chat="scrollToBottomChat" :userData="getUserById(message.message.user_id)"
+                            @deleteMessage="deleteMessage" @editMessage="editMessage"
+                            :highestRole="findHighestRole(userData.id)">
 
                         </messagecard>
                     </div>
@@ -1138,22 +1194,30 @@ export default {
 
                 <div v-if="clientWriteMessage && ticketStatus !== 'Closed'"
                     class="w-full flex max-h-1/5 object-bottom inset-x-0 bottom-0 absolute ">
-                    <button class="btn btn-circle btn-outline btn-accent" @click="refreshChat">
-                        <i class='bx bx-refresh lg text-xl'></i>
-                    </button>
-                    <a v-if="clientUploadMedia" class="btn btn-circle btn-outline btn-accent" for="uploadFile"
-                        href="https://uupload.ir/" target="_blank">
-                        <i class='bx bx-cloud-upload lg text-xl'> </i>
-                    </a>
-                    <label v-if="clientUploadMedia" class="btn btn-circle btn-outline btn-accent"
-                        @click="startAudioRecording">
-                        <i class='bx bxs-microphone lg text-xl' v-if="recordingState === 0"></i>
-                        <i class='bx bxs-circle lg text-xl' v-if="recordingState === 1"></i>
-                        <i class='bx bx-play lg text-xl' v-if="recordingState === 2"></i>
-                    </label>
+                    <div class="tooltip" :data-tip="lang[selectedLang].refresh">
+                        <button class="btn btn-circle btn-outline btn-accent" @click="refreshChat">
+                            <i class='bx bx-refresh lg text-xl'></i>
+                        </button>
+                    </div>
+                    <div class="tooltip" :data-tip="lang[selectedLang].upload">
+                        <a v-if="clientUploadMedia" class="btn btn-circle btn-outline btn-accent" for="uploadFile"
+                            href="https://uupload.ir/" target="_blank">
+                            <i class='bx bx-cloud-upload lg text-xl'> </i>
+                        </a>
+                    </div>
+                    <div class="tooltip" :data-tip="lang[selectedLang].voicemessages">
+                        <label v-if="clientUploadMedia" class="btn btn-circle btn-outline btn-accent"
+                            @click="startAudioRecording">
+                            <i class='bx bxs-microphone lg text-xl' v-if="recordingState === 0"></i>
+                            <i class='bx bxs-circle lg text-xl' v-if="recordingState === 1"></i>
+                            <i class='bx bx-play lg text-xl' v-if="recordingState === 2"></i>
+                        </label>
+                    </div>
                     <!--Predefined Messages-->
-                    <label class="btn btn-circle btn-outline btn-accent" for="sys-prdefinedmsg-modal"><i
-                            class='bx bxs-comment-add lg text-xl'></i></label>
+                    <div class="tooltip" :data-tip="lang[selectedLang].predefinedmessage">
+                        <label class="btn btn-circle btn-outline btn-accent" for="sys-prdefinedmsg-modal"><i
+                                class='bx bxs-comment-add lg text-xl'></i></label>
+                    </div>
                     <input type="checkbox" id="sys-prdefinedmsg-modal" class="modal-toggle" />
                     <div class="modal">
 

@@ -45,7 +45,6 @@ export default {
     
         if(!this.$props.systems){
             await this.fetchSystems()
-            
             await this.fetchSys()
             return
         }
@@ -91,12 +90,14 @@ export default {
             })
         },
         async fetchSys(){
+            this.doneFetchingCats = false
             for(var sys of this.passedSys){
                 await axios.get(`${this.categoryDetailsAPI}${sys.id}`, {headers: {Authorization: `Token ${this.token}`}}).then(async res => {
                     sys.categories = res.data
                                  
                 })
             }
+            this.doneFetchingCats = true
         },
         navigateToTicketPage(ticket){
             this.selectedTicket = ticket
@@ -123,17 +124,20 @@ export default {
             userDataAPI: 'https://ticket-backend.iran.liara.run/api/users/details/ata/',
             categoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // <int:sysid>
             systemsAPI: "https://ticket-backend.iran.liara.run/api/systems/details/user/",
-            verifiedCategoriesAPI: 'https://ticket-backend.iran.liara.run/api/category/role/user/' // uid/sysid
+            verifiedCategoriesAPI: 'https://ticket-backend.iran.liara.run/api/category/role/user/', // uid/sysid
+            // data states
+            doneFetchingCats: false,
         }
     }
 }
 </script>
 
 <template>
-    <div v-show="isActive" style="height: 90%" class="m-5">
+    <div v-if="doneFetchingCats" v-show="isActive" style="height: 90%" class="m-5">
         <ShowTicket v-if="show_tickets" @toggle_make_show="toggle_make_show" @select_ticket="select_ticket" :systems="passedSys" :passedTicketList="tickets" :userData="userData" :lang="lang" :selectedLang="selectedLang" :verifiedCat="verifiedCat"></ShowTicket>
         <MakeTicket v-if="show_make_ticket" @toggle_make_show="toggle_make_show" :systems="passedSys" :userData="userData" v-on:navigate-to-ticket="navigateToTicketPage" :lang="lang" :selectedLang="selectedLang"></MakeTicket>
-        <TicketPage v-if="show_ticket_page" :ticket="selectedTicket" @close_ticket_page="close_ticket_page" :systems="passedSys" :lang="lang" :selectedLang="selectedLang"></TicketPage>
+        <TicketPage v-if="show_ticket_page"  v-on:update-tickets="fetchTickets"
+        :ticket="selectedTicket" @close_ticket_page="close_ticket_page" :systems="passedSys" :lang="lang" :selectedLang="selectedLang"></TicketPage>
 
     </div>
 

@@ -237,6 +237,7 @@ export default {
             <select class="select  w-9/10 focus:outline-none focus:ring focus:ring-neutral"
                 v-on:change="updatedSelectedCat">
                 <option disabled selected> {{ lang[selectedLang].selectticketcategory }}</option>
+                <option v-if="getCurrentCats() === undefined" disabled>Loading ...</option>
                 <option v-for="cat in getCurrentCats()" v-bind:key="cat.id">{{ cat.name }}</option>
 
 

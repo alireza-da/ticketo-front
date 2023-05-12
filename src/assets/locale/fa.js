@@ -124,5 +124,9 @@ export const fa = {
     'defaultMessage': 'پیام پیش فرض',
     'popout': 'پنجره جدید',
     'closeticketwarnmsg': 'آیا مطمئنید میخواهید تیکت را ببندید؟ تیکت بسته شده مجدد قابل بازگشایی از سمت شما نیست!',
-    'loginviadiscord': "ورود با دیسکورد"
+    'loginviadiscord': "ورود با دیسکورد",
+    'refresh': 'بروزرسانی',
+    'upload': 'آپلود',
+    'voicemessages': 'پیام صوتی',
+    'predefinedmessage': 'پیام آماده'
 }
