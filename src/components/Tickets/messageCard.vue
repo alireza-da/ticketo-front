@@ -13,7 +13,7 @@
                 <img src="../../assets/360_F_510888200_EentlrpDCeyf2L5FZEeSfgYaeiZ80qAU.jpg">
             </div>
         </div>
-        <audio :src="backendBaseAPI + audio" class="box-border h-10 w-64" v-for="audio in audioList" v-bind:key="audio"
+        <audio :src="backendBaseAPI + audio" class="box-border h-10 w-64 border-4 " :class="audioColor" v-for="audio in audioList" v-bind:key="audio"
             controls></audio>
         <!-- <a class="hover:cursor-pointer" v-for="audio in audioList" v-bind:key="audio" :href="backendBaseAPI + audio"
             target="_blank">
@@ -99,6 +99,8 @@ export default {
             token: null,
             chatColor: this.message.sender === 'me' ? 'chat-bubble-info' : 'chat-bubble-primary',
             showOption: this.message.sender === 'me' || this.highestRole.update_ticket || this.highestRole.manage_system ? true : false,
+            audioColor: this.message.sender === 'me' ? 'border-info' : 'border-primary',
+
             attachmentAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/attachment/',
             backendBaseAPI: 'https://ticket-backend.iran.liara.run',
             photoList: [],
