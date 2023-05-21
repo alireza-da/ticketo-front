@@ -803,7 +803,7 @@ export default {
                                     <input type="checkbox" id="delete-ticket-modal" class="modal-toggle" />
                                     <div class="modal">
                                         <div class="modal-box">
-                                            <h3 class="font-bold text-lg">Warning</h3>
+                                            <h3 class="font-bold text-lg">Warning</h3> 
                                             <p class="py-4">{{ lang[selectedLang].deleteTicketWarnMsg }}</p>
                                             <div class="modal-action">
                                                 <label for="delete-ticket-modal" class="btn btn-success hover:()"

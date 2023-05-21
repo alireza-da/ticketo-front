@@ -86,7 +86,7 @@ import axios from "axios";
 export default {
     name: "ReceivedMessage",
     props: {
-        message: Object,
+        message: Object, 
         userData: Object,
         highestRole: Object
 
