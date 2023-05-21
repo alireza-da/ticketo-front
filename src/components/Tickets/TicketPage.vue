@@ -786,9 +786,40 @@ export default {
 
                                     <button class="btn btn-outline btn-accent " @click="close_ticket_page()">
                                         <i class='bx bx-arrow-back mr-1'></i>{{ lang[selectedLang].back }}</button>
-                                    <button class="btn btn-outline btn-accent " @click="safeDeleteTicket"
-                                        v-if="clientDeleteTicket">
+
+
+
+
+                                    <!-- <button class="btn btn-outline btn-accent " @click="safeDeleteTicket"
+                                        v-if="clientDeleteTicket && ticketStatus === 'Closed'" >
                                         <i class='bx bx-trash'></i>{{ lang[selectedLang].Delete }}</button>
+                                    <label class="btn btn-outline btn-accent " for="close-ticket-modal"><i
+                                            class='bx bx-window-close mr-1'></i>{{ lang[selectedLang].close }}</label> -->
+
+<!--  -->
+
+                                    <label class="btn btn-outline btn-accent " for="delete-ticket-modal" v-if="clientDeleteTicket && ticketStatus === 'Closed'"><i
+                                            class='bx bx-window-close mr-1'></i>{{ lang[selectedLang].Delete }}</label>
+                                    <input type="checkbox" id="delete-ticket-modal" class="modal-toggle" />
+                                    <div class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="font-bold text-lg">Warning</h3>
+                                            <p class="py-4">{{ lang[selectedLang].deleteTicketWarnMsg }}</p>
+                                            <div class="modal-action">
+                                                <label for="delete-ticket-modal" class="btn btn-success hover:()"
+                                                    @click="safeDeleteTicket">{{ lang[selectedLang].Delete }}</label>
+                                                <label for="delete-ticket-modal" class="btn btn-error">{{
+                                                    lang[selectedLang].cancel }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+<!--  -->
+
                                     <button class="btn btn-outline btn-accent " @click="openTicket"
                                         v-if="clientManageSystem || clientUpdateTicket">
                                         <i class='bx bxs-envelope-open mr-1'></i>{{ lang[selectedLang].open }}</button>
