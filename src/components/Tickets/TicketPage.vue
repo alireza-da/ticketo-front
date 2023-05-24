@@ -1274,22 +1274,19 @@ export default {
                                                 <div>
                                                     <div class="font-bold">{{ pm.title }}</div>
                                                 </div>
+                                                <label class="btn btn-ghost btn-xs bg-primary" @click="sendPm(pm)"
+                                                for="sys-prdefinedmsg-modal"><i class='bx bxs-edit-alt mr-2'></i>
+                                                {{ lang[selectedLang].send }}</label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="flex items-center space-x-3">
-                                                <div>
-                                                    <div class="font-bold">{{ pm.content }}</div>
+                                                <div class="">
+                                                    <div class="font-bold break-all">{{ pm.content }}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <th>
-
-                                            <label class="btn btn-ghost btn-xs bg-primary" @click="sendPm(pm)"
-                                                for="sys-prdefinedmsg-modal"><i class='bx bxs-edit-alt mr-2'></i>
-                                                {{ lang[selectedLang].send }}</label>
-
-                                        </th>
+                                        
                                         <!-- <input type="checkbox" :id="`edit-pm-modal${pm.id}`" class="modal-toggle" />
                                         <div class="modal modal-bottom lg:modal-middle w-full overflow-auto h-full">
                                             <div class="modal-box w-11/12 max-w-7xl">
