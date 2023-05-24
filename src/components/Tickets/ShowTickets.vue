@@ -112,6 +112,7 @@ export default {
         },
 
         async filterByCategory(cat) {
+            this.doneFetchingTickets = false
             this.selectedCat = cat
             this.ticketList = []
             if (this.selectedCat === 'all') {
@@ -121,6 +122,7 @@ export default {
                         await this.fetchSys(t)
                     }
                 }
+                this.doneFetchingTickets = true
                 return
             }
             for (const t of this.$props.passedTicketList) {
@@ -139,6 +141,7 @@ export default {
                 }
 
             }
+            this.doneFetchingTickets = true
         },
         findCatSystem(cat) {
             for (const sys of this.systemList) {
@@ -174,6 +177,7 @@ export default {
             return result
         },
         async toggleCloseList() {
+            this.doneFetchingTickets = false
             this.is_closed = !this.is_closed
             this.ticketList = []
             for (const t of this.$props.passedTicketList) {
@@ -182,6 +186,7 @@ export default {
                     await this.fetchSys(t)
                 }
             }
+            this.doneFetchingTickets = true
         },
         async isVerifiedCat(t) {
             // check if owner of system
@@ -345,8 +350,8 @@ export default {
 
 
         <div class="overflow-x-auto  overflow-y-auto">
-            <progress class="progress w-full progress-accent" v-if="!doneFetchingTickets"></progress>
-            <table class="table w-full " id="ticketsTable" v-if="doneFetchingTickets">
+            <progress class="progress w-full progress-accent" v-show="!doneFetchingTickets"></progress>
+            <table class="table w-full " id="ticketsTable" v-show="doneFetchingTickets">
                 <!-- head -->
                 <thead>
                     <tr>
