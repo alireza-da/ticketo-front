@@ -1245,7 +1245,7 @@ export default {
                         </label>
                     </div>
                     <!--Predefined Messages-->
-                    <div class="tooltip" :data-tip="lang[selectedLang].predefinedmessage">
+                    <div class="tooltip" :data-tip="lang[selectedLang].predefinedmessage" v-if="clientUpdateTicket || clientManageSystem">
                         <label class="btn btn-circle btn-outline btn-accent" for="sys-prdefinedmsg-modal"><i
                                 class='bx bxs-comment-add lg text-xl'></i></label>
                     </div>
