@@ -147,6 +147,19 @@ export default {
                 this.doneFetchingRoles = true
             })
         },
+        setRolePermissionInputs(role){
+            this.roleReadMessage =  role.read_messages
+            this.roleWriteMessage =  role.write_messages
+            this.roleDeleteMessage =  role.delete_messages
+            this.roleReadHistory = role.read_history
+            this.roleUploadMedia = role.upload_media
+            this.roleDeleteTicket = role.delete_ticket
+            this.roleCreateTicket = role.create_ticket
+            this.roleUpdateTicket = role.update_ticket
+            this.roleManageSystem = role.manage_system
+            this.roleManageRoles = role.manage_role
+            this.roleManageMembers = role.manage_members
+        },
         async changeTicketPrefix() {
             await axios.put(`${this.systemDetailsAPI}${this.passedSys['id']}`, {
                 "ticket_prefix": this.ticketPrefix, "name": this.passedSys['name'], "ref_url": this.passedSys['ref_url']
@@ -1583,7 +1596,7 @@ export default {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <label class="btn btn-ghost btn-xs bg-primary"
+                                                <label class="btn btn-ghost btn-xs bg-primary" @click="setRolePermissionInputs(role)"
                                                     :for="`edit-role-modal${role.id}`"><i class='bx bxs-edit-alt mr-2'></i>
                                                     {{ lang[selectedLang].edit }}</label>
 
@@ -1646,28 +1659,28 @@ export default {
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].readmsg }}</span>
-                                                                    <input type="checkbox" checked="checked"
-                                                                        :placeholder="role.read_messages"
+                                                                    <input type="checkbox"
+                                                                        
                                                                         v-model="roleReadMessage"
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].writemsg }}</span>
-                                                                    <input type="checkbox" checked="checked"
+                                                                    <input type="checkbox"
                                                                         v-model="roleWriteMessage"
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].deletemsg }}</span>
-                                                                    <input type="checkbox" v-model="roleDeleteMessage"
+                                                                    <input type="checkbox" v-model="roleDeleteMessage" 
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].readhistory }}</span>
-                                                                    <input type="checkbox" checked="checked"
+                                                                    <input type="checkbox" 
                                                                         v-model="roleReadHistory"
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
@@ -1675,7 +1688,7 @@ export default {
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].systems }}uploadmedia</span>
-                                                                    <input type="checkbox" checked="checked"
+                                                                    <input type="checkbox"
                                                                         v-model="roleUploadMedia"
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
@@ -1694,20 +1707,20 @@ export default {
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].createticket }}</span>
-                                                                    <input type="checkbox" checked="checked"
+                                                                    <input type="checkbox" 
                                                                         v-model="roleCreateTicket"
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].managesystem }}</span>
-                                                                    <input type="checkbox" v-model="roleManageSystem"
+                                                                    <input type="checkbox" v-model="roleManageSystem" 
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
                                                                 <label class="label cursor-pointer justify-start">
                                                                     <span class="label-text">
                                                                         {{ lang[selectedLang].managerole }}</span>
-                                                                    <input type="checkbox" v-model="roleManageRoles"
+                                                                    <input type="checkbox" v-model="roleManageRoles" 
                                                                         class="checkbox checkbox-primary ml-2" />
                                                                 </label>
                                                                 <label class="label cursor-pointer justify-start">
@@ -1722,7 +1735,7 @@ export default {
                                                             <label class="label cursor-pointer justify-start"
                                                                 v-for="cat in categories" v-bind:key="cat.id">
                                                                 <span class="label-text"> {{ cat.name }}</span>
-                                                                <input type="checkbox"
+                                                                <input type="checkbox" 
                                                                     class="checkbox checkbox-primary ml-2"
                                                                     :id="`update${cat.name}-${cat.id}-${role.id}`" />
                                                             </label>
@@ -1730,7 +1743,7 @@ export default {
                                                             <label class="label cursor-pointer justify-start"
                                                                 v-for="cat in categories" v-bind:key="cat.id">
                                                                 <span class="label-text"> {{ cat.name }}</span>
-                                                                <input type="checkbox"
+                                                                <input type="checkbox" 
                                                                     class="checkbox checkbox-primary ml-2"
                                                                     :id="`closed-${cat.name}-${cat.id}-${role.id}`" />
                                                             </label>
