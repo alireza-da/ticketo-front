@@ -28,7 +28,7 @@
             v-if="photoList.length > 0 || videoList.length > 0 || fileList.length > 0 || message.message.content">
             <textarea class="textarea textarea-bordered text-white h-fit w-100 " v-if="isEditActive"
                 v-model="lastMessage"></textarea>
-            <div v-else>
+            <div style="white-space: pre-wrap;" v-else>
                 {{ message.message.content }}
             </div>
 
