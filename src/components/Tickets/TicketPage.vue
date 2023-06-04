@@ -742,7 +742,7 @@ export default {
                                     <h3 class="text-1xl "> {{ lang[selectedLang].category }} : </h3>
                                     <div class="dropdown">
                                         <a tabindex="0" class="">{{ ticketCategory }}<i class='bx bx-chevron-down ml-1'></i></a>
-                                        <ul tabindex="0"
+                                        <ul tabindex="0" v-show="clientManageSystem || clientUpdateTicket"
                                             class="dropdown-content menu p-2 shadow bg-dark rounded-box w-52">
                                             <li v-for="cat in categories" v-bind:key="cat.id" class="flex flex-row"
                                             :style="{'color': cat.color}"><a @click="changeCat(cat)"><i class='bx bxs-circle'></i><p class="text-white">{{cat.name}}</p></a></li>
@@ -752,9 +752,18 @@ export default {
 
                                 </div>
                                 <div class="grid grid-cols-2">
+                                    
                                     <h3 class="text-1xl "> {{ lang[selectedLang].system }} : </h3>
-                                    <p>{{ system.name }}</p>
-
+                                    <p v-if="!(clientManageSystem || clientUpdateTicket)">{{ system.name }}</p>                   
+                                    <div class="dropdown">
+                                        <a tabindex="0" class="">{{ system.name }}<i class='bx bx-chevron-down ml-1'></i></a>
+                                        <ul tabindex="0"  v-if="clientManageSystem || clientUpdateTicket"
+                                            class="dropdown-content menu p-2 shadow bg-dark rounded-box w-52">
+                                            <li v-for="sys in systems" v-bind:key="sys.id" class="flex flex-row"
+                                           ><a @click="changeSys(sys)"><i class='bx bxs-circle'></i><p class="text-white">{{sys.name}}</p></a></li>
+                                        </ul>
+                                        
+                                    </div>
                                 </div>
 
                                 <div class="grid grid-cols-2">
