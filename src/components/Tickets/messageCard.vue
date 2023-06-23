@@ -29,7 +29,7 @@
             <textarea class="textarea textarea-bordered text-white h-fit w-100 " v-if="isEditActive"
                 v-model="lastMessage"></textarea>
             <div style="white-space: pre-wrap;" v-else>
-                {{ message.message.content }}
+                {{ message.message.content }}<br><span style="color: gray; font-size: 12px; font-style: italic;" v-if="message.message.is_edited">edited</span>
             </div>
 
             <a class="hover:cursor-pointer" v-for="photo in photoList" v-bind:key="photo" :href="backendBaseAPI + photo"

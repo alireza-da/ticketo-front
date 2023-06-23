@@ -106,11 +106,20 @@ export default {
                 this.createdTicket = res.data
                 successLevel += 1
             }).catch(err => {
-                this.$notify({
+                if(err.response.status === 409){
+                    this.$notify({
+                    group: 'error',
+                    title: 'error',
+                    text: 'One Ticket per Category'
+                })
+                }else{
+                    this.$notify({
                     group: 'error',
                     title: 'error',
                     text: 'Something Wrong'
                 })
+                }
+                
             })
 
             // create ticket role
@@ -168,8 +177,8 @@ export default {
             var customFieldsResult = []
             for (const cf of this.customFieldsKey) {
                 let el = document.getElementById(cf)
-                console.log(el.value);
-                customFieldsResult.push(el.value)
+                if(el !== null)
+                    customFieldsResult.push(el.value)
             }
             var msg = '';
             for (const cf of this.customFieldsKey) {

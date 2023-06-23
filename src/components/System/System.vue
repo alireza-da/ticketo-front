@@ -401,6 +401,14 @@ export default {
                     text: "Category has been deleted"
                 }, 2000) // 2s
                 await this.fetchCategories()
+            }).catch(err => {
+                if(err.response.status == 400){
+                    this.$notify({
+                    group: "error",
+                    title: "Field Error",
+                    text: "Fill all fields"
+                }, 2000) // 2s
+                }
             })
         },
         async removeUserFromSys(uid) {

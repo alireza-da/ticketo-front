@@ -263,10 +263,13 @@ export default {
             })
         },
         async changeCat(cat) {
-            
+            var newName
+            var splitted = this.$props.ticket.name.split("-")
+            newName = `${splitted[0]}-${splitted[1]}-${cat.name}-${this.$props.ticket.id}-${this.$props.ticket.ticketOwner.name}`
             await axios.put(`${this.ticketDetailsAPI}${this.$props.ticket.id}`, {
                 sys_id: this.$props.ticket.sys_id,
-                name: this.$props.ticket.name,
+                // name: this.$props.ticket.name,
+                name: newName,
                 category: cat.id
             }, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
                 this.$notify({
@@ -275,6 +278,22 @@ export default {
                     text: 'Ticket has been updated'
                 })
                 this.ticketCategory = cat.name
+                await this.refreshMessages()
+                this.$emit('update-tickets')
+            })
+
+        },
+        async changeSys(cat) {
+            await axios.put(`${this.ticketDetailsAPI}${this.$props.ticket.id}`, {
+                sys_id: cat.id,
+                name: this.$props.ticket.name,
+            }, { headers: { Authorization: `Token ${this.token}` } }).then(async res => {
+                this.$notify({
+                    group: 'foo',
+                    title: 'Succes',
+                    text: 'Ticket has been updated'
+                })
+                this.system = cat
                 await this.refreshMessages()
                 this.$emit('update-tickets')
             })
@@ -406,7 +425,8 @@ export default {
         },
         async editMessage(mid, editMessageText) {
             await axios.put(`${this.deleteMessageAPI}${mid}`, {
-                "content": editMessageText
+                "content": editMessageText,
+                "is_edited": true
             }, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
                 this.$notify({
                     group: 'foo',
@@ -738,9 +758,9 @@ export default {
 
                                 <br>
                                 <div class="grid grid-cols-2">
-
                                     <h3 class="text-1xl "> {{ lang[selectedLang].category }} : </h3>
-                                    <div class="dropdown">
+                                    <p v-if="!(clientManageSystem || clientUpdateTicket)">{{ ticketCategory }}</p>    
+                                    <div class="dropdown" v-if="clientManageSystem || clientUpdateTicket">
                                         <a tabindex="0" class="">{{ ticketCategory }}<i class='bx bx-chevron-down ml-1'></i></a>
                                         <ul tabindex="0" v-show="clientManageSystem || clientUpdateTicket"
                                             class="dropdown-content menu p-2 shadow bg-dark rounded-box w-52">
@@ -755,9 +775,9 @@ export default {
                                     
                                     <h3 class="text-1xl "> {{ lang[selectedLang].system }} : </h3>
                                     <p v-if="!(clientManageSystem || clientUpdateTicket)">{{ system.name }}</p>                   
-                                    <div class="dropdown">
+                                    <div class="dropdown" v-if="clientManageSystem || clientUpdateTicket">
                                         <a tabindex="0" class="">{{ system.name }}<i class='bx bx-chevron-down ml-1'></i></a>
-                                        <ul tabindex="0"  v-if="clientManageSystem || clientUpdateTicket"
+                                        <ul tabindex="0"  
                                             class="dropdown-content menu p-2 shadow bg-dark rounded-box w-52">
                                             <li v-for="sys in systems" v-bind:key="sys.id" class="flex flex-row"
                                            ><a @click="changeSys(sys)"><i class='bx bxs-circle'></i><p class="text-white">{{sys.name}}</p></a></li>

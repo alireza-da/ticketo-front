@@ -128,15 +128,17 @@ export default {
                     title: "Success",
                     text: `${this.sysName} has been created`
                 })
+                
                 await this.createOwnership(res.data['id'])
                 await this.createDefaultCategory(res.data['id'])
                 location.reload()
 
             }).catch(err => {
+                console.log(err)
                 this.$notify({
                     group: "error",
                     title: "Error",
-                    text: `Something wrong`
+                    text: 'Something wrong'
                 })
             })
         },
@@ -166,7 +168,7 @@ export default {
                 "user_id": this.passedUserData['id'],
                 "write_messages": true
             }, { headers: { Authorization: `Token ${this.token}` } }).then(res => {
-
+                
             })
         },
 
@@ -230,7 +232,7 @@ export default {
                             <label class="input-group">
                                 <span> {{lang[selectedLang].name}}</span>
                                 <input type="text" placeholder="Sample Shop" class="input input-bordered"
-                                    v-model="sysName" />
+                                    v-model="sysName" required />
                             </label>
                             <label class="label">
                                 <span class="label-text"> {{lang[selectedLang].about}}</span>
@@ -238,7 +240,7 @@ export default {
                             <label class="input-group">
                                 <span> {{lang[selectedLang].about}}</span>
                                 <input type="text" placeholder="24/7 support" class="input input-bordered"
-                                    v-model="sysAbout" />
+                                    v-model="sysAbout" required/>
                             </label>
                             <label class="label">
                                 <span class="label-text">Ticket Prefix</span>
@@ -246,7 +248,7 @@ export default {
                             <label class="input-group">
                                 <span>Prefix</span>
                                 <input type="text" placeholder="shop-ticket-{ticket_id}" class="input input-bordered"
-                                    v-model="sysTicketPrefix" />
+                                    v-model="sysTicketPrefix" required/>
                             </label>
                             <label class="label">
                                 <span class="label-text"> {{lang[selectedLang].bannerpicture}}</span>
