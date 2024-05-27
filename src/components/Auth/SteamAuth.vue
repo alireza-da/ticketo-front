@@ -17,7 +17,7 @@ export default {
             steamUrl: "",
             steamHex: "",
             // APIs 
-            steamTokenAPI: 'http://127.0.0.1:8000/api/ata/steam/'
+            steamTokenAPI: 'https://ticketoapi.liara.run/api/ata/steam/'
         }
 
     },

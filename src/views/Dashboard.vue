@@ -24,12 +24,12 @@ export default {
             navigatedTicket: null,
             token: null,
             // API URIs 
-            ticketsAPI: "http://127.0.0.1:8000/api/users/details/tickets/", // e.g http://127.0.0.1:8000/api/users/details/tickets/1
-            systemsAPI: "http://127.0.0.1:8000/api/systems/details/user/", // e.g http://127.0.0.1:8000/api/systems/details/user/1
-            userAPI: "http://127.0.0.1:8000/api/users/details/ata/", // e.g http://127.0.0.1:8000/api/users/details/1
-            systemDetailsAPI: 'http://127.0.0.1:8000/api/systems/details/', // sys id
-            findTicketOwnerAPI: 'http://127.0.0.1:8000/api/tickets/roles/ticketowner/', // tid
-            categryListAPI: 'http://127.0.0.1:8000/api/categories/details/', // cid
+            ticketsAPI: "https://ticketoapi.liara.run/api/users/details/tickets/", // e.g https://ticketoapi.liara.run/api/users/details/tickets/1
+            systemsAPI: "https://ticketoapi.liara.run/api/systems/details/user/", // e.g https://ticketoapi.liara.run/api/systems/details/user/1
+            userAPI: "https://ticketoapi.liara.run/api/users/details/ata/", // e.g https://ticketoapi.liara.run/api/users/details/1
+            systemDetailsAPI: 'https://ticketoapi.liara.run/api/systems/details/', // sys id
+            findTicketOwnerAPI: 'https://ticketoapi.liara.run/api/tickets/roles/ticketowner/', // tid
+            categryListAPI: 'https://ticketoapi.liara.run/api/categories/details/', // cid
             userData: null,
             systemsData: null,
             ticketsData: null,

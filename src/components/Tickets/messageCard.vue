@@ -101,8 +101,8 @@ export default {
             showOption: this.message.sender === 'me' || this.highestRole.update_ticket || this.highestRole.manage_system ? true : false,
             audioColor: this.message.sender === 'me' ? 'border-info' : 'border-primary',
 
-            attachmentAPI: 'http://127.0.0.1:8000/api/tickets/messages/details/attachment/',
-            backendBaseAPI: 'http://127.0.0.1:8000',
+            attachmentAPI: 'https://ticketoapi.liara.run/api/tickets/messages/details/attachment/',
+            backendBaseAPI: 'https://ticketoapi.liara.run',
             photoList: [],
             videoList: [],
             externalPhotoList: [],

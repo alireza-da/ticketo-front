@@ -23,7 +23,7 @@ export default {
             navigatedTicket: null,
             token: null,
             // API URIs
-            userAPI: "http://127.0.0.1:8000/api/users/details/ata/", // e.g http://127.0.0.1:8000/api/users/details/1
+            userAPI: "https://ticketoapi.liara.run/api/users/details/ata/", // e.g https://ticketoapi.liara.run/api/users/details/1
             userData: null,
             systemsData: null,
             ticketsData: null,

@@ -41,12 +41,12 @@ export default {
             customFields: {},
             customFieldsKey: [],
             // APIs
-            ticketListAPI: 'http://127.0.0.1:8000/api/tickets/list/',
-            ticketRoleListAPI: 'http://127.0.0.1:8000/api/tickets/roles/list/',
-            messageListAPI: 'http://127.0.0.1:8000/api/tickets/messages/list/',
-            attachmentListAPI: 'http://127.0.0.1:8000/api/tickets/messages/details/attachment/list/',
-            systemUsersWithRolesAPI: 'http://127.0.0.1:8000/api/systems/details/users/withroles/', // sys_id
-            postDefaultMessageAPI: 'http://127.0.0.1:8000/api/tickets/send/defaultmessage/',
+            ticketListAPI: 'https://ticketoapi.liara.run/api/tickets/list/',
+            ticketRoleListAPI: 'https://ticketoapi.liara.run/api/tickets/roles/list/',
+            messageListAPI: 'https://ticketoapi.liara.run/api/tickets/messages/list/',
+            attachmentListAPI: 'https://ticketoapi.liara.run/api/tickets/messages/details/attachment/list/',
+            systemUsersWithRolesAPI: 'https://ticketoapi.liara.run/api/systems/details/users/withroles/', // sys_id
+            postDefaultMessageAPI: 'https://ticketoapi.liara.run/api/tickets/send/defaultmessage/',
         }
     },
     methods: {

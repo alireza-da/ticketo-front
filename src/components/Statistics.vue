@@ -46,13 +46,13 @@ export default {
             adminStats: [],
             index: 0,
             // APIs
-            systemsListAPI: 'http://127.0.0.1:8000/api/systems/list/',
-            ticketsAPI: "http://127.0.0.1:8000/api/users/details/tickets/", // e.g http://127.0.0.1:8000/api/users/details/tickets/1
-            ticketListAPI: 'http://127.0.0.1:8000/api/tickets/list/',
-            userSystemsAPI: "http://127.0.0.1:8000/api/systems/details/user/", // e.g http://127.0.0.1:8000/api/systems/details/user/1
-            userAPI: "http://127.0.0.1:8000/api/users/details/ata/", // e.g http://127.0.0.1:8000/api/users/details/1
-            serverMediaAPI: 'http://127.0.0.1:8000', //path
-            adminStatsAPI: 'http://127.0.0.1:8000/api/systems/admin-stats'
+            systemsListAPI: 'https://ticketoapi.liara.run/api/systems/list/',
+            ticketsAPI: "https://ticketoapi.liara.run/api/users/details/tickets/", // e.g https://ticketoapi.liara.run/api/users/details/tickets/1
+            ticketListAPI: 'https://ticketoapi.liara.run/api/tickets/list/',
+            userSystemsAPI: "https://ticketoapi.liara.run/api/systems/details/user/", // e.g https://ticketoapi.liara.run/api/systems/details/user/1
+            userAPI: "https://ticketoapi.liara.run/api/users/details/ata/", // e.g https://ticketoapi.liara.run/api/users/details/1
+            serverMediaAPI: 'https://ticketoapi.liara.run', //path
+            adminStatsAPI: 'https://ticketoapi.liara.run/api/systems/admin-stats'
         }
     },
     methods: {

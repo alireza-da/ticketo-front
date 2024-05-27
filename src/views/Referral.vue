@@ -17,8 +17,8 @@ export default {
             refUrl: null,
             token: null,
             // APIs
-            sysRefAPI: 'http://127.0.0.1:8000/api/systems/details/referral/', //'<str:referral>/<int:uid>'
-            userAPI: 'http://127.0.0.1:8000/api/users/details/ata/'
+            sysRefAPI: 'https://ticketoapi.liara.run/api/systems/details/referral/', //'<str:referral>/<int:uid>'
+            userAPI: 'https://ticketoapi.liara.run/api/users/details/ata/'
         }
     },
     async created() {

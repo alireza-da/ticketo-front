@@ -301,12 +301,12 @@ export default {
             is_closed: false,
             doneFetchingTickets: false,
             // APIs
-            systemDetailsAPI: 'http://127.0.0.1:8000/api/systems/details/', // sys id
-            findTicketOwnerAPI: 'http://127.0.0.1:8000/api/tickets/roles/ticketowner/', // tid
-            categryListAPI: 'http://127.0.0.1:8000/api/categories/details/', // cid
-            verifiedCategoriesAPI: 'http://127.0.0.1:8000/api/category/role/user/', // uid/sysid
-            categoryDetailsAPI: 'http://127.0.0.1:8000/api/system/categories/details/', // <int:sysid>
-            userRolesAPI: 'http://127.0.0.1:8000/api/roles/details/', // <int:sysid>/<int:uid>,
+            systemDetailsAPI: 'https://ticketoapi.liara.run/api/systems/details/', // sys id
+            findTicketOwnerAPI: 'https://ticketoapi.liara.run/api/tickets/roles/ticketowner/', // tid
+            categryListAPI: 'https://ticketoapi.liara.run/api/categories/details/', // cid
+            verifiedCategoriesAPI: 'https://ticketoapi.liara.run/api/category/role/user/', // uid/sysid
+            categoryDetailsAPI: 'https://ticketoapi.liara.run/api/system/categories/details/', // <int:sysid>
+            userRolesAPI: 'https://ticketoapi.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
         }
     }
 

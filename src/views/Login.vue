@@ -27,14 +27,14 @@ export default {
             systems: null,
             token: "",
             // APIs
-            googleAuthTokenAPI: 'http://127.0.0.1:8000/api/ata/google/',
+            googleAuthTokenAPI: 'https://ticketoapi.liara.run/api/ata/google/',
             googleAccesTokenAPI: 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=',
-            discordAuthTokenAPI: 'http://127.0.0.1:8000/api/ata/discord/',
-            steamAuthTokenAPI: 'http://127.0.0.1:8000/api/ata/steam/',
+            discordAuthTokenAPI: 'https://ticketoapi.liara.run/api/ata/discord/',
+            steamAuthTokenAPI: 'https://ticketoapi.liara.run/api/ata/steam/',
             discordOauth2API: 'https://discord.com/api/oauth2/authorize?client_id=1100826836516229191&redirect_uri=https%3A%2F%2Fticket.sunrp.ir%2Fauth%2Fdiscord&response_type=code&scope=identify',
-            createUserAPI: 'http://127.0.0.1:8000/api/users/create/',
-            roleListAPI: "http://127.0.0.1:8000/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
-            sysListAPI: "http://127.0.0.1:8000/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
+            createUserAPI: 'https://ticketoapi.liara.run/api/users/create/',
+            roleListAPI: "https://ticketoapi.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
+            sysListAPI: "https://ticketoapi.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
         }
     },
     methods: {
@@ -81,7 +81,7 @@ export default {
         },
 
         login() {
-            axios.post('http://127.0.0.1:8000/api/ata/', {
+            axios.post('https://ticketoapi.liara.run/api/ata/', {
 
                 "username": this.email,
                 "password": this.password
@@ -141,7 +141,7 @@ export default {
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data', },
             }).then((response) => {
 
-                axios.post('http://127.0.0.1:8000/api/ata/guest/', {
+                axios.post('https://ticketoapi.liara.run/api/ata/guest/', {
                     guest_identifier: gi
                 }, {
                     headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},

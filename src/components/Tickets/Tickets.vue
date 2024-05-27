@@ -120,11 +120,11 @@ export default {
             userData: null,
             token: null,
             // APIs
-            userTicketListAPI: 'http://127.0.0.1:8000/api/users/details/tickets/', //'<int:uid>'
-            userDataAPI: 'http://127.0.0.1:8000/api/users/details/ata/',
-            categoryDetailsAPI: 'http://127.0.0.1:8000/api/system/categories/details/', // <int:sysid>
-            systemsAPI: "http://127.0.0.1:8000/api/systems/details/user/",
-            verifiedCategoriesAPI: 'http://127.0.0.1:8000/api/category/role/user/', // uid/sysid
+            userTicketListAPI: 'https://ticketoapi.liara.run/api/users/details/tickets/', //'<int:uid>'
+            userDataAPI: 'https://ticketoapi.liara.run/api/users/details/ata/',
+            categoryDetailsAPI: 'https://ticketoapi.liara.run/api/system/categories/details/', // <int:sysid>
+            systemsAPI: "https://ticketoapi.liara.run/api/systems/details/user/",
+            verifiedCategoriesAPI: 'https://ticketoapi.liara.run/api/category/role/user/', // uid/sysid
             // data states
             doneFetchingCats: false,
         }

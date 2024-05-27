@@ -11,7 +11,7 @@ export default {
         return {
             token: null,
             userData: null,
-            userAPI: "http://127.0.0.1:8000/api/users/details/ata/",
+            userAPI: "https://ticketoapi.liara.run/api/users/details/ata/",
             name : null,
             email : null,
             steamHex : null,
@@ -28,7 +28,7 @@ export default {
         this.email = this.userData.email
         this.steamHex = this.userData.steam_hex
         this.discordId = this.userData.discord_id
-        this.pfp = 'http://127.0.0.1:8000'+this.userData.pfp
+        this.pfp = 'https://ticketoapi.liara.run'+this.userData.pfp
 
     },
     methods: {
