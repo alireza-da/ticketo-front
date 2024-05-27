@@ -108,7 +108,7 @@ export default {
       </div>
     </div>
   </NotificationGroup>
-  <router-view class="z-0" :lang="lang" :selectedLang="selectedLang" v-on:change-lang="changeLang" v-on:change-theme="changeTheme" :data-theme="theme"/>
+  <router-view class="z-0 h-screen w-full" :lang="lang" :selectedLang="selectedLang" v-on:change-lang="changeLang" v-on:change-theme="changeTheme" :data-theme="theme"/>
 </template>
 
 <style>

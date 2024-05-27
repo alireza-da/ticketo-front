@@ -24,12 +24,12 @@ export default {
             navigatedTicket: null,
             token: null,
             // API URIs 
-            ticketsAPI: "https://ticket-backend.iran.liara.run/api/users/details/tickets/", // e.g https://ticket-backend.iran.liara.run/api/users/details/tickets/1
-            systemsAPI: "https://ticket-backend.iran.liara.run/api/systems/details/user/", // e.g https://ticket-backend.iran.liara.run/api/systems/details/user/1
-            userAPI: "https://ticket-backend.iran.liara.run/api/users/details/ata/", // e.g https://ticket-backend.iran.liara.run/api/users/details/1
-            systemDetailsAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/', // sys id
-            findTicketOwnerAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/ticketowner/', // tid
-            categryListAPI: 'https://ticket-backend.iran.liara.run/api/categories/details/', // cid
+            ticketsAPI: "http://127.0.0.1:8000/api/users/details/tickets/", // e.g http://127.0.0.1:8000/api/users/details/tickets/1
+            systemsAPI: "http://127.0.0.1:8000/api/systems/details/user/", // e.g http://127.0.0.1:8000/api/systems/details/user/1
+            userAPI: "http://127.0.0.1:8000/api/users/details/ata/", // e.g http://127.0.0.1:8000/api/users/details/1
+            systemDetailsAPI: 'http://127.0.0.1:8000/api/systems/details/', // sys id
+            findTicketOwnerAPI: 'http://127.0.0.1:8000/api/tickets/roles/ticketowner/', // tid
+            categryListAPI: 'http://127.0.0.1:8000/api/categories/details/', // cid
             userData: null,
             systemsData: null,
             ticketsData: null,

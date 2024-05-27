@@ -17,13 +17,13 @@ export default {
             discordId: 0,
             discordUsername: "",
             // APIs 
-            discordTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/discord/',
+            discordTokenAPI: 'http://127.0.0.1:8000/api/ata/discord/',
             discordOfficialEndpointAPI: 'https://discord.com/api/v10/',
             discordTokenEndpoint: 'oauth2/token',
             redirectUri: 'https://ticket.sunrp.ir/auth/discord',
-            sysListAPI: "https://ticket-backend.iran.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
-            createUserAPI: 'https://ticket-backend.iran.liara.run/api/users/create/',
-            roleListAPI: "https://ticket-backend.iran.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
+            sysListAPI: "http://127.0.0.1:8000/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
+            createUserAPI: 'http://127.0.0.1:8000/api/users/create/',
+            roleListAPI: "http://127.0.0.1:8000/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
         }
 
     },
@@ -70,7 +70,7 @@ export default {
                             }, {
                                 headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data', },
                             }).then((response) => {
-                                axios.post('https://ticket-backend.iran.liara.run/api/ata/discord/', {
+                                axios.post('http://127.0.0.1:8000/api/ata/discord/', {
                                     discord_id: this.discordId
                                 }, {
                                     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },

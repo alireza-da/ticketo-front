@@ -10,7 +10,7 @@ const icons = ['facebook', 'twitter', 'instagram', 'gmail'];
 </script>
 
 <template>
-    <div mb-8 flex flex-col items-center gap-14  id="landing" class="place-self-center place-items-center place-content-center justify-center">
+    <div mb-8 flex flex-col items-center gap-14  id="landing" class="p-1000 h-full place-self-center place-items-center place-content-center justify-center" >
         <header w="full max-xs sm:max-w-md md:max-w-lg lg:max-4xl xl:max-6xl" class="mx-auto h-20 flex text-white">
             <img :src="logo" alt="" width="260"/>
         </header>

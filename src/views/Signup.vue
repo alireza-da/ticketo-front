@@ -26,13 +26,13 @@ export default {
             pfpRes: null,
             system: null,
             // APIs
-            googleAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/google/',
+            googleAuthTokenAPI: 'http://127.0.0.1:8000/api/ata/google/',
             googleAccesTokenAPI: 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=',
-            discordAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/discord/',
-            steamAuthTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/steam/',
-            createUserAPI: 'https://ticket-backend.iran.liara.run/api/users/create/',
-            roleListAPI: "https://ticket-backend.iran.liara.run/api/roles/list/", 
-            sysListAPI: "https://ticket-backend.iran.liara.run/api/systems/list/",
+            discordAuthTokenAPI: 'http://127.0.0.1:8000/api/ata/discord/',
+            steamAuthTokenAPI: 'http://127.0.0.1:8000/api/ata/steam/',
+            createUserAPI: 'http://127.0.0.1:8000/api/users/create/',
+            roleListAPI: "http://127.0.0.1:8000/api/roles/list/", 
+            sysListAPI: "http://127.0.0.1:8000/api/systems/list/",
         }
     },
     methods: {
@@ -83,7 +83,7 @@ export default {
                 headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data', },
             }).then((response) => {
 
-                axios.post('https://ticket-backend.iran.liara.run/api/ata/', {
+                axios.post('http://127.0.0.1:8000/api/ata/', {
 
                     "username": this.email,
                     "password": this.password

@@ -129,5 +129,7 @@ export const fa = {
     'refresh': 'بروزرسانی',
     'upload': 'آپلود',
     'voicemessages': 'پیام صوتی',
-    'predefinedmessage': 'پیام آماده'
+    'predefinedmessage': 'پیام آماده',
+    'respondedtickets': ' تیکت های پاسخ داده شده',
+    'messagesent': 'تعداد پیام ها'
 }

@@ -301,12 +301,12 @@ export default {
             is_closed: false,
             doneFetchingTickets: false,
             // APIs
-            systemDetailsAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/', // sys id
-            findTicketOwnerAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/ticketowner/', // tid
-            categryListAPI: 'https://ticket-backend.iran.liara.run/api/categories/details/', // cid
-            verifiedCategoriesAPI: 'https://ticket-backend.iran.liara.run/api/category/role/user/', // uid/sysid
-            categoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // <int:sysid>
-            userRolesAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
+            systemDetailsAPI: 'http://127.0.0.1:8000/api/systems/details/', // sys id
+            findTicketOwnerAPI: 'http://127.0.0.1:8000/api/tickets/roles/ticketowner/', // tid
+            categryListAPI: 'http://127.0.0.1:8000/api/categories/details/', // cid
+            verifiedCategoriesAPI: 'http://127.0.0.1:8000/api/category/role/user/', // uid/sysid
+            categoryDetailsAPI: 'http://127.0.0.1:8000/api/system/categories/details/', // <int:sysid>
+            userRolesAPI: 'http://127.0.0.1:8000/api/roles/details/', // <int:sysid>/<int:uid>,
         }
     }
 

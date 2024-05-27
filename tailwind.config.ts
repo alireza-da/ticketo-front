@@ -1,9 +1,10 @@
 module.exports = {
     content: ['./src/**/*.{vue,js,ts}'],
+    plugins: [require('daisyui')],
     daisyui: {
         themes: [
             {
-                dark: {
+                custom: {
 
                     "primary": "#7339ab",
 
@@ -13,7 +14,7 @@ module.exports = {
 
                     "neutral": "#88f4ff",
 
-                    "base-100": "#F0EFF0",
+                    "base-100": "#000000",
 
                     "info": "#2A7DEA",
 
@@ -23,9 +24,11 @@ module.exports = {
 
                     "error": "#F46685",
                 }
+                
             },
+            "dark",
+            "light"
         ],
         
     },
-    plugins: [require('daisyui')],
 };

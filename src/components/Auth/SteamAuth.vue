@@ -17,7 +17,7 @@ export default {
             steamUrl: "",
             steamHex: "",
             // APIs 
-            steamTokenAPI: 'https://ticket-backend.iran.liara.run/api/ata/steam/'
+            steamTokenAPI: 'http://127.0.0.1:8000/api/ata/steam/'
         }
 
     },

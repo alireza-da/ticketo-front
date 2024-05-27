@@ -127,5 +127,7 @@ export const en = {
     'refresh': 'Refresh',
     'upload': 'Upload',
     'voicemessages': 'Voice Message',
-    'predefinedmessage': 'Predefined Messages'
+    'predefinedmessage': 'Predefined Messages',
+    'respondedtickets': 'Responded Tickets',
+    'messagesent': 'Messages'
 }

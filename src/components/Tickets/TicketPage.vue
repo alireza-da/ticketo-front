@@ -669,18 +669,18 @@ export default {
             system: null,
             categories: [],
             // APIs
-            ticketRolesDetails: 'https://ticket-backend.iran.liara.run/api/tickets/roles/details/', // tid
-            userDetailsAPI: 'https://ticket-backend.iran.liara.run/api/users/details/', // uid
-            ticketRolesMainDetailsAPI: 'https://ticket-backend.iran.liara.run/api/ticketsroles/details/', // pk
-            ticketsAddAPI: 'https://ticket-backend.iran.liara.run/api/tickets/add/', // tid, uid
-            ticketRoleListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/roles/list/',
-            usersSystemAPI: 'https://ticket-backend.iran.liara.run/api/systems/details/users/',
-            userAPI: "https://ticket-backend.iran.liara.run/api/users/details/ata/", // e.g https://ticket-backend.iran.liara.run/api/users/details/1
-            ticketDetailsAPI: 'https://ticket-backend.iran.liara.run/api/tickets/details/', // tid
+            ticketRolesDetails: 'http://127.0.0.1:8000/api/tickets/roles/details/', // tid
+            userDetailsAPI: 'http://127.0.0.1:8000/api/users/details/', // uid
+            ticketRolesMainDetailsAPI: 'http://127.0.0.1:8000/api/ticketsroles/details/', // pk
+            ticketsAddAPI: 'http://127.0.0.1:8000/api/tickets/add/', // tid, uid
+            ticketRoleListAPI: 'http://127.0.0.1:8000/api/tickets/roles/list/',
+            usersSystemAPI: 'http://127.0.0.1:8000/api/systems/details/users/',
+            userAPI: "http://127.0.0.1:8000/api/users/details/ata/", // e.g http://127.0.0.1:8000/api/users/details/1
+            ticketDetailsAPI: 'http://127.0.0.1:8000/api/tickets/details/', // tid
             referralLinkURL: 'https://ticket.sunrp.ir/tickets/',
-            predefinedMessageSystemAPI: 'https://ticket-backend.iran.liara.run/api/system/predefinedmsg/', // sysid
-            userRolesAPI: 'https://ticket-backend.iran.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
-            sysCategoryDetailsAPI: 'https://ticket-backend.iran.liara.run/api/system/categories/details/', // sid
+            predefinedMessageSystemAPI: 'http://127.0.0.1:8000/api/system/predefinedmsg/', // sysid
+            userRolesAPI: 'http://127.0.0.1:8000/api/roles/details/', // <int:sysid>/<int:uid>,
+            sysCategoryDetailsAPI: 'http://127.0.0.1:8000/api/system/categories/details/', // sid
             // ticket role data
             roleReadMessage: false,
             roleWriteMessage: false,
@@ -693,10 +693,10 @@ export default {
             roleManageSystem: false,
             roleManageRoles: false,
             roleManageMembers: false,
-            ticketMessagesAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/', // tid
-            deleteMessageAPI: 'https://ticket-backend.iran.liara.run/api/messages/details/', // mid
-            createMessageAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/list/', // tid
-            attachmentListAPI: 'https://ticket-backend.iran.liara.run/api/tickets/messages/details/attachment/list/',
+            ticketMessagesAPI: 'http://127.0.0.1:8000/api/tickets/messages/details/', // tid
+            deleteMessageAPI: 'http://127.0.0.1:8000/api/messages/details/', // mid
+            createMessageAPI: 'http://127.0.0.1:8000/api/tickets/messages/list/', // tid
+            attachmentListAPI: 'http://127.0.0.1:8000/api/tickets/messages/details/attachment/list/',
             messageList: null,
             finalMessageList: ref([]),
             // permission view
@@ -739,7 +739,7 @@ export default {
                     <div class="avatar mb-5">
                         <div class="w-24 rounded-full">
                             <img src="../../assets/Icons/user_icon.png" v-if="!userPfp" />
-                            <img :src="`https://ticket-backend.iran.liara.run${userPfp}`" v-else />
+                            <img :src="`http://127.0.0.1:8000${userPfp}`" v-else />
                         </div>
                         <div class="grid place-self-end text-xl" style="margin-left: 10px">
                             <h3 class="" style="margin-top: 30%">{{ username }}</h3>
@@ -896,7 +896,7 @@ export default {
                                                                 <div class="flex items-center space-x-3">
                                                                     <div class="avatar">
                                                                         <div class="mask mask-squircle w-12 h-12">
-                                                                            <img :src="`https://ticket-backend.iran.liara.run${user.pfp}`"
+                                                                            <img :src="`http://127.0.0.1:8000${user.pfp}`"
                                                                                 v-if="user.pfp" alt="Avatar" />
                                                                             <img alt="Avatar" v-else
                                                                                 src="../../assets/3f9470b34a8e3f526dbdb022f9f19cf7.jpg" />

@@ -1,0 +1,118 @@
+Date : 2023-05-09 12:36:18
+Directory : d:\Programming\Web\ticket-system-frontend
+Total : 64 files,  6574 codes, 371 comments, 647 blanks, all 7592 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| Vue                |         25 |      5,784 |        268 |        533 |      6,585 |
+| JavaScript         |          5 |        355 |         14 |          9 |        378 |
+| TypeScript         |         13 |        119 |         63 |         42 |        224 |
+| JSON               |          6 |        102 |          9 |          4 |        115 |
+| CSS                |          2 |         76 |         15 |         20 |        111 |
+| HTML               |          2 |         47 |          0 |          6 |         53 |
+| Markdown           |          1 |         44 |          0 |         25 |         69 |
+| JSON with Comments |          2 |         24 |          0 |          2 |         26 |
+| XML                |          7 |         13 |          2 |          4 |         19 |
+| YAML               |          1 |         10 |          0 |          2 |         12 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                       | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                          |         64 |      6,574 |        371 |        647 |      7,592 |
+| . (Files)                                                                                                                  |         17 |        301 |         20 |         59 |        380 |
+| cypress                                                                                                                    |          5 |         23 |         55 |          9 |         87 |
+| cypress\e2e                                                                                                                |          2 |         16 |          1 |          3 |         20 |
+| cypress\fixtures                                                                                                           |          1 |          5 |          0 |          1 |          6 |
+| cypress\support                                                                                                            |          2 |          2 |         54 |          5 |         61 |
+| public                                                                                                                     |          1 |         22 |          0 |          2 |         24 |
+| src                                                                                                                        |         41 |      6,228 |        296 |        577 |      7,101 |
+| src (Files)                                                                                                                |          2 |        140 |          1 |         22 |        163 |
+| src\assets                                                                                                                 |         12 |        339 |         17 |         25 |        381 |
+| src\assets (Files)                                                                                                         |         10 |         91 |         17 |         25 |        133 |
+| src\assets\locale                                                                                                          |          2 |        248 |          0 |          0 |        248 |
+| src\components                                                                                                             |         18 |      4,888 |        243 |        401 |      5,532 |
+| src\components (Files)                                                                                                     |          4 |        312 |         33 |         30 |        375 |
+| src\components\Auth                                                                                                        |          2 |        149 |          2 |          9 |        160 |
+| src\components\Profile                                                                                                     |          3 |        313 |          3 |         57 |        373 |
+| src\components\System                                                                                                      |          2 |      2,254 |         95 |        100 |      2,449 |
+| src\components\Tickets                                                                                                     |          6 |      1,851 |        110 |        202 |      2,163 |
+| src\components\__tests__                                                                                                   |          1 |          9 |          0 |          3 |         12 |
+| src\router                                                                                                                 |          1 |         73 |         11 |          5 |         89 |
+| src\stores                                                                                                                 |          1 |         10 |          0 |          3 |         13 |
+| src\views                                                                                                                  |          7 |        778 |         24 |        121 |        923 |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                   | language           | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\Programming\Web\ticket-system-frontend\.eslintrc.cjs                                                                    | JavaScript         |         23 |          1 |          2 |         26 |
+| d:\Programming\Web\ticket-system-frontend\.gitlab-ci.yml                                                                   | YAML               |         10 |          0 |          2 |         12 |
+| d:\Programming\Web\ticket-system-frontend\.prettierrc.json                                                                 | JSON               |          8 |          0 |          0 |          8 |
+| d:\Programming\Web\ticket-system-frontend\README.md                                                                        | Markdown           |         44 |          0 |         25 |         69 |
+| d:\Programming\Web\ticket-system-frontend\cypress.config.ts                                                                | TypeScript         |          7 |          0 |          2 |          9 |
+| d:\Programming\Web\ticket-system-frontend\cypress\e2e\example.cy.ts                                                        | TypeScript         |          6 |          1 |          2 |          9 |
+| d:\Programming\Web\ticket-system-frontend\cypress\e2e\tsconfig.json                                                        | JSON with Comments |         10 |          0 |          1 |         11 |
+| d:\Programming\Web\ticket-system-frontend\cypress\fixtures\example.json                                                    | JSON               |          5 |          0 |          1 |          6 |
+| d:\Programming\Web\ticket-system-frontend\cypress\support\commands.ts                                                      | TypeScript         |          1 |         37 |          2 |         40 |
+| d:\Programming\Web\ticket-system-frontend\cypress\support\e2e.ts                                                           | TypeScript         |          1 |         17 |          3 |         21 |
+| d:\Programming\Web\ticket-system-frontend\env.d.ts                                                                         | TypeScript         |          5 |          2 |          1 |          8 |
+| d:\Programming\Web\ticket-system-frontend\index.html                                                                       | HTML               |         25 |          0 |          4 |         29 |
+| d:\Programming\Web\ticket-system-frontend\package.json                                                                     | JSON               |         67 |          0 |          1 |         68 |
+| d:\Programming\Web\ticket-system-frontend\postcss.config.ts                                                                | TypeScript         |          3 |          0 |          1 |          4 |
+| d:\Programming\Web\ticket-system-frontend\public\index.html                                                                | HTML               |         22 |          0 |          2 |         24 |
+| d:\Programming\Web\ticket-system-frontend\src\App.vue                                                                      | Vue                |        127 |          1 |         14 |        142 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\base.css                                                              | CSS                |         59 |          2 |         14 |         75 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\bg-desktop.svg                                                        | XML                |          1 |          0 |          0 |          1 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\bg-mobile.svg                                                         | XML                |          1 |          0 |          0 |          1 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\illustration-mockups.svg                                              | XML                |          1 |          0 |          0 |          1 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\image-brightness-day-forecast-moon-night-weather-icon-svgrepo-com.svg | XML                |          1 |          1 |          1 |          3 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\index.ts                                                              | TypeScript         |          2 |          0 |          1 |          3 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\locale\en.js                                                          | JavaScript         |        123 |          0 |          0 |        123 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\locale\fa.js                                                          | JavaScript         |        125 |          0 |          0 |        125 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\logo.svg                                                              | XML                |          1 |          0 |          0 |          1 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\main.css                                                              | CSS                |         17 |         13 |          6 |         36 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\person-svgrepo-com.svg                                                | XML                |          2 |          1 |          2 |          5 |
+| d:\Programming\Web\ticket-system-frontend\src\assets\system.svg                                                            | XML                |          6 |          0 |          1 |          7 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Auth\DiscordAuth.vue                                              | Vue                |         93 |          1 |          5 |         99 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Auth\SteamAuth.vue                                                | Vue                |         56 |          1 |          4 |         61 |
+| d:\Programming\Web\ticket-system-frontend\src\components\HelloWorld.vue                                                    | Vue                |         35 |          0 |          6 |         41 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Navbar.vue                                                        | Vue                |         96 |         17 |         13 |        126 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Notification.vue                                                  | Vue                |         28 |          0 |          1 |         29 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Profile\EditProfile.vue                                           | Vue                |        124 |          1 |         28 |        153 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Profile\Profile.vue                                               | Vue                |        106 |          2 |          9 |        117 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Profile\ShowProfile.vue                                           | Vue                |         83 |          0 |         20 |        103 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Statistics.vue                                                    | Vue                |        153 |         16 |         10 |        179 |
+| d:\Programming\Web\ticket-system-frontend\src\components\System\System.vue                                                 | Vue                |      1,971 |         91 |         88 |      2,150 |
+| d:\Programming\Web\ticket-system-frontend\src\components\System\Systems.vue                                                | Vue                |        283 |          4 |         12 |        299 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Tickets\MakeTicket.vue                                            | Vue                |        241 |         18 |         17 |        276 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Tickets\ShowTickets.vue                                           | Vue                |        318 |          5 |         39 |        362 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Tickets\TicketCard.vue                                            | Vue                |         49 |          2 |          7 |         58 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Tickets\TicketPage.vue                                            | Vue                |        984 |         72 |         90 |      1,146 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Tickets\Tickets.vue                                               | Vue                |        120 |          2 |         19 |        141 |
+| d:\Programming\Web\ticket-system-frontend\src\components\Tickets\messageCard.vue                                           | Vue                |        139 |         11 |         30 |        180 |
+| d:\Programming\Web\ticket-system-frontend\src\components\__tests__\HelloWorld.spec.ts                                      | TypeScript         |          9 |          0 |          3 |         12 |
+| d:\Programming\Web\ticket-system-frontend\src\main.ts                                                                      | TypeScript         |         13 |          0 |          8 |         21 |
+| d:\Programming\Web\ticket-system-frontend\src\router\index.js                                                              | JavaScript         |         73 |         11 |          5 |         89 |
+| d:\Programming\Web\ticket-system-frontend\src\stores\counter.ts                                                            | TypeScript         |         10 |          0 |          3 |         13 |
+| d:\Programming\Web\ticket-system-frontend\src\views\Dashboard.vue                                                          | Vue                |        201 |          4 |         18 |        223 |
+| d:\Programming\Web\ticket-system-frontend\src\views\ForgetPassword.vue                                                     | Vue                |         21 |          0 |         11 |         32 |
+| d:\Programming\Web\ticket-system-frontend\src\views\Help.vue                                                               | Vue                |         34 |          0 |          2 |         36 |
+| d:\Programming\Web\ticket-system-frontend\src\views\Landing.vue                                                            | Vue                |         59 |          4 |         11 |         74 |
+| d:\Programming\Web\ticket-system-frontend\src\views\Login.vue                                                              | Vue                |        215 |          6 |         38 |        259 |
+| d:\Programming\Web\ticket-system-frontend\src\views\Referral.vue                                                           | Vue                |         89 |          1 |          7 |         97 |
+| d:\Programming\Web\ticket-system-frontend\src\views\Signup.vue                                                             | Vue                |        159 |          9 |         34 |        202 |
+| d:\Programming\Web\ticket-system-frontend\tailwind.config.ts                                                               | TypeScript         |         21 |          0 |         11 |         32 |
+| d:\Programming\Web\ticket-system-frontend\tsconfig.app.json                                                                | JSON               |          4 |          9 |          0 |         13 |
+| d:\Programming\Web\ticket-system-frontend\tsconfig.json                                                                    | JSON with Comments |         14 |          0 |          1 |         15 |
+| d:\Programming\Web\ticket-system-frontend\tsconfig.node.json                                                               | JSON               |          8 |          0 |          1 |          9 |
+| d:\Programming\Web\ticket-system-frontend\tsconfig.vitest.json                                                             | JSON               |         10 |          0 |          1 |         11 |
+| d:\Programming\Web\ticket-system-frontend\vite.config.ts                                                                   | TypeScript         |         31 |          1 |          4 |         36 |
+| d:\Programming\Web\ticket-system-frontend\vitest.config.ts                                                                 | TypeScript         |         10 |          5 |          1 |         16 |
+| d:\Programming\Web\ticket-system-frontend\vue.config.js                                                                    | JavaScript         |         11 |          2 |          2 |         15 |
+| Total                                                                                                                      |                    |      6,574 |        371 |        647 |      7,592 |
++----------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
