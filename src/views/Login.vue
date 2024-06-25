@@ -243,6 +243,7 @@ export default {
                                     src="../assets/Icons/discord.png">
                             </a>
 
+                            
                         </div>
 
 
