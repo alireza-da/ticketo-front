@@ -121,7 +121,7 @@ export default {
                 banner: this.sysBanner,
                 pfp: this.sysPfp,
                 is_private: this.sysPrivacy,
-                ref_url: `${this.sysName}-${this.makeid(7)}`
+                ref_url: `${this.sysName.trim()}-${this.makeid(7)}`
             }, { headers: { Authorization: `Token ${this.token}`, 'Content-Type': 'multipart/form-data' } }).then(async res => {
                 this.$notify({
                     group: "foo",
