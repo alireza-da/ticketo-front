@@ -234,8 +234,8 @@ export default {
                                     value="http://specs.openid.net/auth/2.0/identifier_select" />
                                 <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" />
                                 <input type="hidden" name="openid.mode" value="checkid_setup" />
-                                <input type="hidden" name="openid.realm" value="https://ticket.sunrp.ir/auth/steam" />
-                                <input type="hidden" name="openid.return_to" value="https://ticket.sunrp.ir/auth/steam" />
+                                <input type="hidden" name="openid.realm" value="https://ticketo.liara.run/auth/steam" />
+                                <input type="hidden" name="openid.return_to" value="https://ticketo.liara.run/auth/steam" />
                                 <button class="btn btn-circle justify-center"><img src="../assets/Icons/steam.png"></button>
                             </form>
                             <a class="btn btn-circle justify-center"

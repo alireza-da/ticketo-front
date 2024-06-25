@@ -62,7 +62,7 @@ export default {
         exitRestrictedMode(i) {
             if (this.restrictedMode) {
                 this.restrictedMode = false
-                location.href = `https://ticket.sunrp.ir/dashboard`                
+                location.href = `https://ticketo.liara.run/dashboard`                
             }
         },
         async selectTab(i) {

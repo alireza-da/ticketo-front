@@ -677,7 +677,7 @@ export default {
             usersSystemAPI: 'https://ticketoapi.liara.run/api/systems/details/users/',
             userAPI: "https://ticketoapi.liara.run/api/users/details/ata/", // e.g https://ticketoapi.liara.run/api/users/details/1
             ticketDetailsAPI: 'https://ticketoapi.liara.run/api/tickets/details/', // tid
-            referralLinkURL: 'https://ticket.sunrp.ir/tickets/',
+            referralLinkURL: 'https://ticketo.liara.run/tickets/',
             predefinedMessageSystemAPI: 'https://ticketoapi.liara.run/api/system/predefinedmsg/', // sysid
             userRolesAPI: 'https://ticketoapi.liara.run/api/roles/details/', // <int:sysid>/<int:uid>,
             sysCategoryDetailsAPI: 'https://ticketoapi.liara.run/api/system/categories/details/', // sid

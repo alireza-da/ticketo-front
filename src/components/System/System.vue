@@ -953,7 +953,7 @@ export default {
                 </h2>
                 <p>{{ passedSys['about_system'] }}</p>
                 <p>Referral Link <a class="link link-success"
-                        :href="`https://ticket.sunrp.ir/referral/${passedSys.ref_url}`">https://ticket.sunrp.ir/referral/{{
+                        :href="`https://ticketo.liara.run/referral/${passedSys.ref_url}`">https://ticketo.liara.run/referral/{{
                             passedSys.ref_url }}</a><i class='bx bx-clipboard ml-2'></i></p>
                 <div class="card-actions justify-end">
                     <div class="badge badge-outline"> {{ lang[selectedLang].support }}</div>

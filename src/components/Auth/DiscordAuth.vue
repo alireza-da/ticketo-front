@@ -20,7 +20,7 @@ export default {
             discordTokenAPI: 'https://ticketoapi.liara.run/api/ata/discord/',
             discordOfficialEndpointAPI: 'https://discord.com/api/v10/',
             discordTokenEndpoint: 'oauth2/token',
-            redirectUri: 'https://ticket.sunrp.ir/auth/discord',
+            redirectUri: 'https://ticketo.liara.run/auth/discord',
             sysListAPI: "https://ticketoapi.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
             createUserAPI: 'https://ticketoapi.liara.run/api/users/create/',
             roleListAPI: "https://ticketoapi.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
