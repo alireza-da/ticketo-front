@@ -31,7 +31,7 @@ export default {
             googleAccesTokenAPI: 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=',
             discordAuthTokenAPI: 'https://ticketoapi.liara.run/api/ata/discord/',
             steamAuthTokenAPI: 'https://ticketoapi.liara.run/api/ata/steam/',
-            discordOauth2API: 'https://discord.com/api/oauth2/authorize?client_id=1100826836516229191&redirect_uri=https%3A%2F%2Fticket.liara.run%2Fauth%2Fdiscord&response_type=code&scope=identify',
+            discordOauth2API: 'https://discord.com/oauth2/authorize?client_id=1100826836516229191&response_type=code&redirect_uri=https%3A%2F%2Fticketo.liara.run%2Fauth%2Fdiscord&scope=email+identify',
             createUserAPI: 'https://ticketoapi.liara.run/api/users/create/',
             roleListAPI: "https://ticketoapi.liara.run/api/roles/list/", // roles/details/<int:sysid>/<int:uid>,
             sysListAPI: "https://ticketoapi.liara.run/api/systems/list/", // roles/details/<int:sysid>/<int:uid>,
