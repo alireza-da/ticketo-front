@@ -226,7 +226,7 @@ export default {
                         </label>
                         <div class="divider">OR</div>
                         <a class="btn w-full" @click="loginasguest()">{{ lang[selectedLang].logingasguest }}<i
-                                class='bx bxl-discord-alt ml-2'></i></a>
+                                class='bx bxl-user ml-2'></i></a>
                         <div class="divider">OR</div>
                         <div class="flex justify-around" style="padding-top: 10px">
                             <button class="btn btn-circle justify-center" @click="googleLoginToken"><img
