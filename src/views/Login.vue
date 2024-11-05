@@ -65,7 +65,13 @@ export default {
                             text: "Logged in via Gmail"
                         })
                         localStorage.setItem('token', res.data.token)
-                    })
+                    }).catch(error => {
+                        this.$notify({
+                            group: "error",
+                            title: "Error",
+                            text: "Authentication failed. Your gmail not registered"
+                        }, 2000) // 2s
+                    });
                 }
             })
 
