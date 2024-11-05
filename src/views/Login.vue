@@ -161,7 +161,7 @@ export default {
                 this.$notify({
                     group: "foo",
                     title: "Success",
-                    text: "Your discord profile has been fetched successfuly"
+                    text: "Authenticated as guest"
                 }, 2000) // 2s
             }).catch(error => {
                 this.$notify({
