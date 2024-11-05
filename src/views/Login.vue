@@ -96,7 +96,7 @@ export default {
                 headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', },
             }).then((response) => {
                 localStorage.setItem('token', response.data.token)
-                
+
                 this.token = response.data.token
                 this.$router.push('/dashboard')
                 this.$notify({
@@ -144,13 +144,13 @@ export default {
                 "name": "Guest",
                 "guest_identifier": gi
             }, {
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data', },
+                headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data', },
             }).then((response) => {
 
                 axios.post('https://ticketoapi.liara.run/api/ata/guest/', {
                     guest_identifier: gi
                 }, {
-                    headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                 }).then(async (response) => {
                     localStorage.setItem('token', response.data.token)
                     this.token = response.data.token
@@ -199,13 +199,15 @@ export default {
                 <div class="card-body ">
                     <div class="form-control">
                         <label class="label justify-start">
-                            <i class='bx bxl-gmail mr-2'></i><span class="label-text">{{ lang[selectedLang].email }}</span>
+                            <i class='bx bxl-gmail mr-2'></i><span class="label-text">{{ lang[selectedLang].email
+                                }}</span>
                         </label>
                         <input v-model="email" class="input input-bordered" placeholder="email" type="email" />
                     </div>
                     <div class="form-control">
                         <label class="label justify-start">
-                            <i class='bx bx-key mr-2'></i><span class="label-text">{{ lang[selectedLang].password }}</span>
+                            <i class='bx bx-key mr-2'></i><span class="label-text">{{ lang[selectedLang].password
+                                }}</span>
                         </label>
                         <input v-model="password" class="input input-bordered" placeholder="password" type="password" />
 
@@ -223,12 +225,10 @@ export default {
                             <router-link class="label-text-alt link link-hover" to="/signup">Sign up</router-link>
                         </label>
                         <div class="divider">OR</div>
-                        <a class="btn w-full" :href='discordOauth2API'>{{ lang[selectedLang].loginviadiscord }}<i class='bx bxl-discord-alt ml-2'></i></a>
+                        <a class="btn w-full" @click="loginasguest()">{{ lang[selectedLang].logingasguest }}<i
+                                class='bx bxl-discord-alt ml-2'></i></a>
                         <div class="divider">OR</div>
                         <div class="flex justify-around" style="padding-top: 10px">
-                            <!-- <GoogleLogin :callback="googleLogin" prompt>
-                                
-                            </GoogleLogin> -->
                             <button class="btn btn-circle justify-center" @click="googleLoginToken"><img
                                     src="../assets/Icons/google.png">
                             </button>
@@ -241,15 +241,16 @@ export default {
                                 <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" />
                                 <input type="hidden" name="openid.mode" value="checkid_setup" />
                                 <input type="hidden" name="openid.realm" value="https://ticketo.liara.run/auth/steam" />
-                                <input type="hidden" name="openid.return_to" value="https://ticketo.liara.run/auth/steam" />
-                                <button class="btn btn-circle justify-center"><img src="../assets/Icons/steam.png"></button>
+                                <input type="hidden" name="openid.return_to"
+                                    value="https://ticketo.liara.run/auth/steam" />
+                                <button class="btn btn-circle justify-center"><img
+                                        src="../assets/Icons/steam.png"></button>
                             </form>
-                            <a class="btn btn-circle justify-center"
-                                :href='discordOauth2API'><img
+                            <a class="btn btn-circle justify-center" :href='discordOauth2API'><img
                                     src="../assets/Icons/discord.png">
                             </a>
 
-                            
+
                         </div>
 
 
